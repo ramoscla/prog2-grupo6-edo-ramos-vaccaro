@@ -1,6 +1,6 @@
 
-
 const usersController = {
+
     register : function(req,res){
         res.render('register')
     },
@@ -14,6 +14,7 @@ const usersController = {
     profileEdit: function(req,res){
         res.render('profile-edit')
     }
+    
 };
 
 module.exports = usersController; 
