@@ -1,21 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const usersController = require('../controllers/usersController');
 
-router.get('/register', function(req, res) {
-  res.render('register')
-}); 
+router.get('/register', usersController.register)
 
-router.get('/login', function(req, res) {
-  res.render('login')
-}); 
+router.get('/login', usersController.login)
 
-router.get('/profile', function(req, res) {
-  res.render('profile')
-}); 
+router.get('/profile', usersController.profile)
 
-router.get('/profile/edit', function(req, res) {
-  res.render('profile-edit')
-}); 
+router.get('/profile/edit', usersController.profileEdit)
 
 module.exports = router;
 
