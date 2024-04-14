@@ -11,4 +11,3 @@ router.get('/profile', usersController.profile)
 router.get('/profile/edit', usersController.profileEdit)
 
 module.exports = router;
-
