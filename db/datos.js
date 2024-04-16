@@ -107,3 +107,5 @@ const datos = {
     listaUsuarios: [{}],
 
 }
+
+module.exports = datos;
