@@ -1,4 +1,14 @@
 const datos = {
+    usuarios:
+    {
+        mail: "carlos@email.com", 
+        nombreUsuario: "Carlos",
+        contraseña: "contraseñaCarlos", 
+        fechaNacimiento: "2000-05-28",
+        dni: 73840195,
+        fotoPerfil: "carlos"
+    }, 
+
     listaProductos: [{
         nombre: "Pistacho salado con cáscara",
         foto: <img src="'https://cdn.newgarden.com.ar/media/catalog/product/cache/dda7253a1a2f6711745de410175d10f8/p/i/pistacho-con-c_scara-salado-y-tostado-x-300-gr.png" ></img>,
@@ -225,49 +235,7 @@ const datos = {
         ],
         
     }
-],
-    
-    listaUsuarios: [
-    {
-        mail: "carlos@email.com", 
-        nombreUsuario: "Carlos",
-        contraseña: "contraseñaCarlos", 
-        fechaNacimiento: "2000-05-28",
-        dni: 73840195,
-        fotoPerfil: "carlos"
-    },
-    {
-        mail: "ana@email.com", 
-        nombreUsuario: "Ana",
-        contraseña: "contraseñaAna", 
-        fechaNacimiento: "2004-06-22",
-        dni: 38274017,
-        fotoPerfil: "ana"
-    },
-    {
-        mail: "luis@email.com", 
-        nombreUsuario: "Luis",
-        contraseña: "contraseñaLuis", 
-        fechaNacimiento: "2008-05-15",
-        dni: 19284710,
-        fotoPerfil: "luis"
-    },
-    {
-        mail: "maria@email.com", 
-        nombreUsuario: "Maria",
-        contraseña: "contraseñaMaria", 
-        fechaNacimiento: "2010-03-05",
-        dni: 12748192,
-        fotoPerfil: "maria"
-    },
-    {
-        mail: "juan@email.com", 
-        nombreUsuario: "Juan",
-        contraseña: "contraseñaJuan", 
-        fechaNacimiento: "2001-09-10",
-        dni: 18491850,
-        fotoPerfil: "juan"
-    }]
+]
 }
 
 
