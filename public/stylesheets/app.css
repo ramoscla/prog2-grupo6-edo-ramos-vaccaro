@@ -260,7 +260,7 @@ hr {
 /*====== Footer ======*/
 .main-footer {
   background-color: #2A3D32;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
   margin-top: 80px;
 }
 
@@ -476,6 +476,12 @@ textarea.form-input {
   color: #fff;
 }
 
+.integrantes{
+  background-color: #405D4C;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
 
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
@@ -520,7 +526,7 @@ textarea.form-input {
   }
 
   .main-footer {
-    padding: 40px 0;
+    padding: 40px 0 0 0;
   }
 
   .footer-data {
