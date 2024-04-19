@@ -10,8 +10,8 @@ const datos = {
     }, 
 
     listaProductos: [{
-        nombre: "Pistacho salado con cáscara",
-        foto: "pistachoconcascara.png",
+        nombre: "Pistacho con cáscara salado y tostado ",
+        foto: "pistachos-con-cascara.png",
         descripcion: 'Ideal como snack. Viene con cáscara y cuenta con una textura crocante y sabor salado. No recomendado para hipertensos',
         comentarios: [{
             nombreUsuario: "Carlos",
@@ -26,7 +26,7 @@ const datos = {
         },
         {
             nombreUsuario: "Ana",
-            texto: "Muy nutritivos.",
+            texto: "Muy nutritivos. Me siento renovada cada vez que los como.",
             fotoPerfil: "ana.jpg"
 
         }],
@@ -34,8 +34,8 @@ const datos = {
 
     },
     {
-        nombre: "Nuez pelada mariposa",
-        foto: "nuezmariposa.png",
+        nombre: "Nuez Entera Extra Light",
+        foto: "nuez-entera.jpg",
         descripcion: 'Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.',
         comentarios: [{
             nombreUsuario: "Carlos",
@@ -56,9 +56,9 @@ const datos = {
        
     },
     {
-        nombre: "Nuez entera extra light",
-    foto: 'nuezentera.png',
-    descripcion: 'Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.',
+        nombre: "Nuez Mariposa extra light",
+    foto: 'nuez-mariposa.png',
+    descripcion: 'Variedad de nuez mariposa, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.',
     comentarios: [
         {
             nombreUsuario: "Carlos",
@@ -80,7 +80,7 @@ const datos = {
 },
 {
     nombre: "Castañas de cajú tostadas con sal",
-    foto: 'castañascajutostadas.png',
+    foto: 'castañas-caju-tostadas.png',
     descripcion: 'Gustosas castañas de cajú tostadas con sal. Ideal para picar entre horas.',
     comentarios: [
         {
@@ -101,7 +101,7 @@ const datos = {
     ]},
     {
         nombre: "Almendras tostadas",
-        foto: 'almendrastostadas.png',
+        foto: 'almendras-tostadas.png',
         descripcion: 'Almendras tostadas con un toque de sal. Perfectas para un snack saludable.',
         comentarios: [
             {
@@ -126,7 +126,7 @@ const datos = {
     },
     {
         nombre: "Pistachos sin cáscara",
-        foto: 'pistachossincascara.png',
+        foto: 'pistachos-sin-cascara.png',
         descripcion: 'Pistachos sin cáscara, listos para comer. Deliciosos y prácticos.',
         comentarios: [
             {
@@ -149,7 +149,7 @@ const datos = {
     },
     {
         nombre: "Nueces de macadamia",
-        foto: 'nuecesmacadamia.png',
+        foto: 'nueces-macadamia.png',
         descripcion: 'Nueces de macadamia, conocidas por su sabor suave y textura cremosa. Excelentes para postres.',
         comentarios: [
             {
@@ -172,7 +172,7 @@ const datos = {
     },  
     {
         nombre: "Avellanas tostadas",
-        foto: 'avellanatostadas.png',
+        foto: 'avellana-tostada.png',
         descripcion: 'Avellanas tostadas con un toque de sal. Perfectas para un snack saludable.',
         comentarios: [
             {
@@ -195,7 +195,7 @@ const datos = {
     },
     {
         nombre: "Nueces de Brasil",
-        foto: 'nuecesbrasil.png',
+        foto: 'nueces-brasil.png',
         descripcion: 'Nueces de Brasil, conocidas por su sabor suave y textura cremosa. Excelentes para postres.',
         comentarios: [
             {
@@ -219,8 +219,8 @@ const datos = {
     
     },
     {
-        nombre: "Maní tostado salado",
-        foto: 'manitostadosalado.png',
+        nombre: "Maní salado y tostado",
+        foto: 'mani-tostado-salado.png',
         descripcion: 'Maní tostado con un toque de sal. Perfectos para un snack saludable.',
         comentarios: [
             {
@@ -241,10 +241,6 @@ const datos = {
         ],
         
     }
-]
-}
-
-
-
+]};
 
 module.exports = datos;
