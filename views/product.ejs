@@ -22,7 +22,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">Nombre del producto</h2> 
+			<h2 class="products-title"><%= productos[1].nombre %></h2> 
 			<p class="product-detail-description">
 				<a href="/product/add">Editar</a>
 			</p>
@@ -32,16 +32,28 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="/images/products/<%= productos[1].foto %>" alt="foto del producto" class="foto-perfil">
 					<p class="product-detail-description">
-						Descripción corta del producto. En la página principal solo se ven 2 líneas de estar descripción.Lorem ipsum dolor,
-						sit amet consectetur adipisicing elit. Tae ipsam amet eum, totam dolore libero illo unde? Consectetur dolorem neque
-						veritatis.</p>
+						<%= productos[1].descripcion %>
+						</p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						
+						 <%for (let index = 0; index < productos[1].comentarios.length; index++) {%>
+							
+							<article>
+		
+								<img src= "/images/users/<%=  productos[1].comentarios[index].fotoPerfil%>">
+								<div>
+									<p >
+								<a href="/users/profile"><%=productos[1].comentarios[index].nombreUsuario%>:
+									<%= productos[1].comentarios[index].texto%></p>
+								</div>
+							</article>
+							<%}%>
+
+
 
 					</section>
-					<form class="form" method="get">
+					<form class="form" action="/product" method="post">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
