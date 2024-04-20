@@ -9,7 +9,7 @@ const productController = {
     productAdd: function(req,res){
         res.render('product-add',{
             productos: db.listaProductos,
-            usuarios: db.usuarios
+            usuario: db.usuario
         })
     },
 

@@ -1,5 +1,5 @@
 const datos = {
-    usuarios:
+    usuario:
     {
         mail: "carlos@email.com", 
         nombreUsuario: "Carlos",
