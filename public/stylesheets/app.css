@@ -192,6 +192,7 @@ hr {
 
 .product-box_image {
   border-bottom: 1px solid var(--light-green);
+  height: 300px;
 }
 
 .product-box_data {
@@ -200,9 +201,12 @@ hr {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  height: 40px;
+  overflow: hidden;
 }
 
 .product-box_data h2 {
+  color: #997B67;
   font-size: 2.4em;
   font-weight: 300;
   margin: 0;
@@ -251,9 +255,8 @@ hr {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-.product-box:hover p {
-  height: 36px;
-  margin-top: 15px;
+.product-box_data:hover {
+ height: fit-content;
 }
 
 .product-box:hover i {
@@ -408,7 +411,7 @@ hr {
   padding-bottom: 7.5px;
   border-bottom: 1px solid #dcdcdc;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .comments img{
   width: 40px;
@@ -456,6 +459,17 @@ textarea.form-input {
   resize: vertical;
   padding: 15px;
 }
+
+.formularios{
+  background-color: #405D4C;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  padding: 1%;
+
+}
+
 
 /*====== Profile ======*/
 .info-usuario{
