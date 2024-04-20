@@ -7,7 +7,7 @@ const indexController = {
         })
     },
     searchResults: function(req,res){
-        res.render('search-results')
+        res.render('search-results', {productos: db.listaProductos})
     }
     
 };
