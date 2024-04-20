@@ -113,6 +113,9 @@ hr {
   cursor: pointer;
 }
 
+i.fas.fa-search{
+  color: #997B67;
+}
 
 /*====== Main Navbar ======*/
 .btn-toggle-navbar {
