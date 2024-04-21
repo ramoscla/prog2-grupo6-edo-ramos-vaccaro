@@ -1,44 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
 <!-- Include Head -->
 <%- include("./partials/head.ejs") %>
+<!-- Include Head -->
 
-	<body>
-		<!-- Header -->
-		<%- include("./partials/header.ejs") %>
-		<!-- /Header -->
+<body>
+	<!-- Header -->
+	<%- include("./partials/header.ejs") %>
+	<!-- /Header -->
 
-		<!-- Novedades -->
-		<div class="container products-wrapper">
-			<div class="row">
-				<div class="container products-wrapper">
-					<div class="row">
-						<div class="col-12">
-							<h2 class="products-title">Resultados de búsqueda</h2>
-						</div>
-						<!-- Show the "ultimos" products -->
-						<%for (let index=0; index < 8; index++) {%>
-							<div class="col-12 col-sm-6 col-lg-3">
-								<section class="product-box">
-									<a href="/product">
-									<figure class="product-box_image">
-											<img class="fotoIndex" src="/images/products/<%= productos[index].foto %>">
-									</figure>
-									<article class="product-box_data">
-												
-									<h2> <%= productos[index].nombre %></h2>
-									<p> <%= productos[index].descripcion %> </p> 
-									<p>Comentarios: <%= productos[index].comentarios.length %></p>
-									</article>
-									</a>
-								</section>
+	<!-- Novedades -->
+			<div class="container products-wrapper">
+				<div class="row">
+					<div class="container products-wrapper">
+						<div class="row">
+							<div class="col-12">
+								<h2 class="products-title">Resultados de búsqueda</h2>
 							</div>
-							<%}%>
 
+							<!-- Show the "ultimos" products -->
+							<% for (let index=0; index < 8; index++) { %>
+								<div class="col-12 col-sm-6 col-lg-3">
+									<section class="product-box">
+										<a href="/product">
+											<figure class="product-box_image">
+												<img class="fotoIndex"
+														src="/images/products/<%= productos[index].foto %>">
+											</figure>
+											<article class="product-box_data">
+												<h2> <%= productos[index].nombre %> </h2>
+												<p> <%= productos[index].descripcion %> </p>
+												<p>Comentarios: <%= productos[index].comentarios.length %> </p>
+											</article>
+										</a>
+									</section>
+								</div>
+								<% } %>
 						</div>
 					</div>
+				</div>
+			</div>
+	<!-- Novedades -->
 
-		<!-- footer -->
-		<%- include('./partials/footer.ejs') %>
-		<!-- /footer -->
-	</body>
+	<!-- footer -->
+	<%- include('./partials/footer.ejs') %>
+	<!-- /footer -->
 
+</body>
 </html>

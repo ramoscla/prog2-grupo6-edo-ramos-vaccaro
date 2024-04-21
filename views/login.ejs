@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <!-- Include Head -->
-
 <%- include("./partials/head.ejs") %>
-
+<!-- Include Head -->
 
 <body>
 	<!-- Header -->
@@ -13,9 +13,11 @@
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
+
 			<div class="col-12">
 				<h2 class="products-title">Ingresar</h2>
 			</div>
+
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 				<form action="/users/profile" method="get" class="formularios">
@@ -23,8 +25,8 @@
 					<label for="nombre">Nombre de usuario:</label>
 					<input type="text" id="nombreUsuario" name="nombreUsuario" required><br>
 
-					<label for="contraseña">Contraseña:</label>
-					<input type="text" id="contraseñaUsuario" name="contraseñaUsuario" required><br>
+					<label for="contrasenia">Contraseña:</label>
+					<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" required><br>
 
 					<label for="recordarme">Recordarme:</label>
 					<input type="checkbox" id="recordarme" name="recordarme"><br>

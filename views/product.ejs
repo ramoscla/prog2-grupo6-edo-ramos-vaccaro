@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <!-- Include Head -->
 <%- include("./partials/head.ejs") %>
+<!-- Include Head -->
 
 <body>
 	<!-- Header -->
@@ -11,46 +13,41 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= productos[1].nombre %></h2> 
-			<p class="product-detail-description">
-				<a href="/product/add">Editar</a>
-			</p>
+			<h2 class="products-title"><%= productos[0].nombre %></h2> 
+			<p class="product-detail-description"> <a href="/product/add">Editar</a> </p>
 		</div>
+
 		<div class="product-detail">
 			<div class="row">
+
 				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="/images/products/<%= productos[1].foto %>" alt="foto del producto" class="foto-perfil">
+					<img src="/images/products/<%= productos[0].foto %>" alt="foto del producto" class="foto-perfil">
 					<p class="product-detail-description">
-						<%= productos[1].descripcion %>
+						<%= productos[0].descripcion %>
 						</p>
 				</article>
+
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						 <%for (let index = 0; index < productos[1].comentarios.length; index++) {%>
-				
+						<% for (let i = 0; i < productos[0].comentarios.length; i++) { %>
 							<article>
-		
-								<img src= "/images/users/<%=  productos[1].comentarios[index].fotoPerfil%>">
-								<div>
-								<p>
-								<a href="/users/profile"> <%=productos[1].comentarios[index].nombreUsuario%> : </a>
-								<%= productos[1].comentarios[index].texto%> 
-								</p>
+								<img src= "/images/users/<%=  productos[0].comentarios[i].fotoPerfil%>"> 
+								<div> 
+									<p> <a href="/users/profile"> <%=productos[0].comentarios[i].nombreUsuario%> : </a> <%= productos[0].comentarios[i].texto%> </p>
 								</div>
 							</article>
-							<%}%>
-
+						<% } %>
 					</section>
 
-					<form class="form" action="/product" method="get">
+					<form class="formularios" action="/product" method="get">
 						<input class="form-input" type="text" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
-					<hr>
+					
 				</div>
+
 			</div>
 		</div>
-	</div>
 	<!-- /product detail -->
 
 	<!-- footer -->
