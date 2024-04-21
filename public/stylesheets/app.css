@@ -511,6 +511,12 @@ textarea.form-input {
   justify-content: center;
 }
 
+.d-flex {
+  color: white;
+}
+.informacionUsuario{
+  color: white;
+}
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
   .main-header_credit-link {
