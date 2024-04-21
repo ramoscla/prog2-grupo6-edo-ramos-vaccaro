@@ -194,7 +194,6 @@ i.fas.fa-search{
 }
 
 .product-box_image {
-  border-bottom: 1px solid var(--light-green);
   height: 300px;
 }
 
@@ -209,7 +208,7 @@ i.fas.fa-search{
 }
 
 .product-box_data h2 {
-  color: #997B67;
+  color: white;
   font-size: 2.4em;
   font-weight: 300;
   margin: 0;
@@ -261,6 +260,10 @@ i.fas.fa-search{
 .product-box_data:hover {
  height: fit-content;
 }
+.product-box_data:hover h2{
+  color: #997B67;
+ }
+ 
 
 .product-box:hover i {
   transform: rotate(360deg);
@@ -431,6 +434,10 @@ i.fas.fa-search{
 }
 .comments .user{
   font-size: 1.7em;
+}
+
+.comments a{
+  color: black;
 }
 
 /*====== Formularios ======*/
