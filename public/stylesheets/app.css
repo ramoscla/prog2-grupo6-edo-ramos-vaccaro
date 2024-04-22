@@ -12,11 +12,11 @@
   --green: #FEFEFE;
   --base-font-family: "Inconsolata", monospace;
 }
-body a{
+
+body a {
   color: white;
   font-family: "Lato", sans-serif;
 }
-
 
 /*====== Basics ======*/
 * {
@@ -68,7 +68,6 @@ hr {
   border-bottom: solid 1px var(--light-green);
 }
 
-
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
@@ -113,7 +112,7 @@ hr {
   cursor: pointer;
 }
 
-i.fas.fa-search{
+i.fas.fa-search {
   color: #997B67;
 }
 
@@ -139,14 +138,14 @@ i.fas.fa-search{
   font-size: 1.5em;
 }
 
-.logout{
+.logout {
   background: transparent;
   border: 0px;
   cursor: pointer;
   font-size: 1em;
 }
 
-.logout:hover{
+.logout:hover {
   color: #1259c3;
 }
 
@@ -157,17 +156,14 @@ i.fas.fa-search{
   border-bottom: solid 1px var(--white);
 }
 
-
-
 /*====== Banner ======*/
 .banner {
   background-image: url(/images/img-home-banner.jpg);
   background-repeat: no-repeat;
-  background-size:cover;
+  background-size: cover;
   background-position: center center;
-  height:fit-content;
+  height: fit-content;
 }
-
 
 /*====== Products ======*/
 .products-wrapper {
@@ -258,16 +254,11 @@ i.fas.fa-search{
 }
 
 .product-box_data:hover {
- height: fit-content;
+  height: fit-content;
 }
-.product-box_data:hover h2{
-  color: #997B67;
- }
- 
 
-.product-box:hover i {
-  transform: rotate(360deg);
-  box-shadow: 0 0 5px var(--white);
+.product-box_data:hover h2 {
+  color: #997B67;
 }
 
 /*====== Footer ======*/
@@ -297,18 +288,6 @@ i.fas.fa-search{
   font-size: 1.5em;
   font-weight: 300;
 }
-
-.sub-footer {
-  border-top: 1px solid var(--light-green);
-  background-color: #ffffff;
-}
-
-.sub-footer p {
-  margin: 0;
-  color: var(--white);
-  padding: 15px 0;
-}
-
 
 /*====== Product Detail ======*/
 .product-detail {
@@ -344,11 +323,13 @@ i.fas.fa-search{
   font-size: 5.5em;
   margin: 10px 0;
 }
-.product-detail .form{
+
+.product-detail .form {
   padding: 0 15px;
   display: flex;
   flex-direction: column;
 }
+
 .small {
   font-size: 1.8em;
   color: var(--white);
@@ -403,42 +384,43 @@ i.fas.fa-search{
   margin-top: 15px;
 }
 
-.action-button.edit {
-  background-color: chocolate;
-}
-.action-button.delete {
-  background-color: rgb(248, 69, 37);
-}
+
 .comments {
   padding: 30px 15px 15px 0;
 }
-.comments article{
+
+.comments article {
   margin-bottom: 7.5px;
   padding-bottom: 7.5px;
   border-bottom: 1px solid #dcdcdc;
   display: flex;
   justify-content: flex-start;
 }
-.comments img{
+
+.comments img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 3%;
 }
-.comments .data{
+
+.comments .data {
   width: 85%;
-  
+
 }
-.comments p{
+
+.comments p {
   font-size: 1.5em;
   margin-top: 0;
 }
-.comments .user{
+
+.comments .user {
   font-size: 1.7em;
 }
 
-.comments a{
+.comments a {
   color: black;
+  font-weight: 600;
 }
 
 /*====== Formularios ======*/
@@ -448,20 +430,8 @@ i.fas.fa-search{
   margin: 10px 0;
 }
 
-.form-input {
-  display: block;
-  width: 100%;
-  height: 45px;
-  margin-bottom: 15px;
-  font-size: 1.5em;
-  border-radius: 8px;
-  border: none;
-  border: solid 1px var(--white);
-  padding: 0 15px;
-}
-
-.error{
-  color: rgb(209, 0, 0);
+.error {
+  color: rgb(254, 0, 0);
   font-size: 1.4em;
 }
 
@@ -471,45 +441,61 @@ textarea.form-input {
   padding: 15px;
 }
 
-.formularios{
+.formularios {
   background-color: #405D4C;
   display: flex;
   align-items: center;
   flex-direction: column;
   color: white;
   padding: 1%;
+}
 
+.formularios input {
+  display: block;
+  border-radius: 8px;
+  border: none;
+  border: solid 1px var(--white);
+  padding: 0 15px;
+  height: 45px;
 }
-.formularios input{
-    border-radius: 8px;
-    border: none;
-    border: solid 1px var(--white);
-    padding: 0 15px;
+.formularios label{
+  font-size: 15px;
+  font-weight: bold;
 }
+.comentarios {
+  background-color: white;
+}
+
+.comentarios input {
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 1.5em;
+}
+
 /*====== Profile ======*/
-.info-usuario{
+.info-usuario {
   border-bottom: 1px solid #ccc;
   padding-bottom: 30px;
   font-size: 16px;
 }
 
-.foto-perfil{
+.fotoPerfil {
   border-radius: 50%;
 }
 
-.main-title{
+.main-title {
   font-size: 25px;
   margin-bottom: 10px;
 }
 
-.btn{
+.btn {
   background-color: #1259c3;
   padding: 10px 20px;
   border-radius: 4px;
   color: #fff;
 }
 
-.integrantes{
+.integrantes {
   background-color: #405D4C;
   color: white;
   display: flex;
@@ -519,17 +505,11 @@ textarea.form-input {
 .d-flex {
   color: white;
 }
-.informacionUsuario{
+
+.informacionUsuario {
   color: white;
 }
 
-.comentarios {
-background-color: white;
-}
-.comentarios input{
-  border-color: black;
-  }
-  
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
   .main-header_credit-link {
