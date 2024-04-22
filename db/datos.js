@@ -3,7 +3,7 @@ const datos = {
     usuario: {
         mail: "carlos@email.com",
         nombreUsuario: "Carlos",
-        contrasena: "contraseñaCarlos",
+        contrasenia: "contraseñaCarlos",
         fechaNacimiento: "2000-05-28",
         dni: 73840195,
         fotoPerfil: "carlos.jpg"

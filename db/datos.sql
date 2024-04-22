@@ -6,7 +6,7 @@ CREATE TABLE usuarios(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
     usuario VARCHAR(25) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    contraseña VARCHAR(100) NOT NULL,
+    contrasenia VARCHAR(100) NOT NULL,
     fechaNacimiento DATE NOT NULL,
     DNI INT NOT NULL,
     foto VARCHAR(50),
@@ -36,7 +36,7 @@ CREATE TABLE comentarios(
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 
-INSERT INTO usuarios (usuario, email, contraseña, fechaNacimiento, DNI, foto) 
+INSERT INTO usuarios (usuario, email, contrasenia, fechaNacimiento, DNI, foto) 
 VALUES
     ("Carlos", "carlos@email.com", "contraseñaCarlos", "2000-05-28", 73840195, "carlos.jpg"),
     ("Ana", "ana@email.com", "contraseñaAna", "2004-06-22", 38274017, "ana.jpg"),
