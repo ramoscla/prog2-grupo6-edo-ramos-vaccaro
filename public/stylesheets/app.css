@@ -10,11 +10,11 @@
   --green: #2A3D32;
   --light-green: #708B7B;
   --green: #FEFEFE;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: "Inconsolata", monospace;
 }
 body a{
   color: white;
-
+  font-family: "Lato", sans-serif;
 }
 
 
@@ -423,6 +423,7 @@ i.fas.fa-search{
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  margin-right: 3%;
 }
 .comments .data{
   width: 85%;
@@ -479,8 +480,12 @@ textarea.form-input {
   padding: 1%;
 
 }
-
-
+.formularios input{
+    border-radius: 8px;
+    border: none;
+    border: solid 1px var(--white);
+    padding: 0 15px;
+}
 /*====== Profile ======*/
 .info-usuario{
   border-bottom: 1px solid #ccc;
@@ -517,6 +522,14 @@ textarea.form-input {
 .informacionUsuario{
   color: white;
 }
+
+.comentarios {
+background-color: white;
+}
+.comentarios input{
+  border-color: black;
+  }
+  
 /*====== Media-Queries ======*/
 @media (min-width: 768px) {
   .main-header_credit-link {
