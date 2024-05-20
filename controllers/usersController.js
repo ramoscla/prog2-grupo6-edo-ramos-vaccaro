@@ -2,8 +2,12 @@ const db = require('../db/datos');
 
 const usersController = {
     register: function (req, res) {
+        
+        res.cookie('usuario', 'Carlos',{maxAge: 1000 * 60 * 60}) ;
         res.render('register');
-    },
+
+    }
+    ,
     login: function (req, res) {
         res.render('login');
     },
