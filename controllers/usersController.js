@@ -4,11 +4,14 @@ const usersController = {
     register: function (req, res) {
         
         res.cookie('usuario', 'Carlos',{maxAge: 1000 * 60 * 60}) ;
+        
         res.render('register');
 
     }
     ,
     login: function (req, res) {
+       
+        console.log(req.cookies.usuario);
         res.render('login');
     },
     profile: function (req, res) {
