@@ -1,5 +1,5 @@
 const db = require('../db/datos');
-
+let validationResult = require('express-validator')
 const usersController = {
     register: function (req, res) {
         
@@ -9,8 +9,13 @@ const usersController = {
 
     }
     ,
+    loginUsuario: function(req,res){
+        let form = req.body; 
+        let error = validationResult(req); 
+
+    },
+
     login: function (req, res) {
-       
         console.log(req.cookies.usuario);
         res.render('login');
     },
