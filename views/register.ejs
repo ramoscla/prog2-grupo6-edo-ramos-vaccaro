@@ -17,25 +17,25 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form method="get" action="/users/login" class="formularios ">
+				<form method="post" action="/users/register" class="formularios">
 
-					<label for="mail">Mail:</label><br>
-					<input type="email" id="email" name="email" required><br>
+					<label for="email">Mail:</label><br>
+					<input type="email" id="email" name="email" value="" required><br>
 
 					<label for="nombre">Nombre de usuario:</label><br>
-					<input type="text" id="nombreUsuario" name="nombreUsuario" required><br>
+					<input type="text" id="nombreUsuario" name="nombreUsuario" value="" required><br>
 
 					<label for="contrasenia">Contraseña:</label><br>
-					<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" required><br>
+					<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" value="" required><br>
 
 					<label for="fechaNacimiento">Fecha de nacimiento:</label><br>
-					<input type="date" id="fechaNacimiento" name="fechaNacimiento" required><br>
+					<input type="date" id="fechaNacimiento" name="fechaNacimiento" value="" required><br>
 
 					<label for="documento">Numero de documento:</label><br>
-					<input type="number" id="documento" name="documento" required><br>
+					<input type="number" id="documento" name="documento" value="" required><br>
 
 					<label for="fotoPerfil">Foto de perfil:</label><br>
-					<input type="file" id="fotoPerfil" name="fotoPerfil"><br>
+					<input type="file" id="fotoPerfil" name="fotoPerfil" value=""><br>
 
 					<input type="submit" value="Crear usuario">
 
