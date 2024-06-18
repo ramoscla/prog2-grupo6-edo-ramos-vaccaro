@@ -29,6 +29,10 @@
 					<% } %>
 					<label for="contrasenia">Contraseña:</label>
 					<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" required><br>
+					<% if(locals.errors && errors.contraseniaUsuario){  %> 
+						<p><%= errors.contraseniaUsuario.msg %></p>
+						<% } %>
+					  
 
 					<label for="recordarme">Recordarme:</label>
 					<input type="checkbox" id="recordarme" name="recordarme"><br>

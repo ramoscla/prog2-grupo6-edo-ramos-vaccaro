@@ -24,11 +24,25 @@ const usersController = {
         let form = req.body; 
         let error = validationResult(req); 
         if (error.isEmpty()){
-            // procesamos el controlador marmalemtne 
+            // procesamos el controlador normalmente 
          db.usuario.findOne({
             where: [{nombre: req.body.nombre}]
          })
-        } else {
+         .then(function(usuarioEncontrado){
+            //Los pongo en session
+            req.session.user ={ 
+                nombre: usuarioEncontrado.nombre
+            }})
+           
+         }
+         //if (req.body.recordarme != undefined){
+           // ('cookieEspecial', 'el dato que quiero guardar', {maxAge: 1000*60*123123123})
+             //   }
+                //Y si el usuario quiere, agregar la cookie para que lo recuerde.
+              //  return res.redirect('/');
+          //  )})
+
+         else {
             return res.render("login", {error: error.mapped()})
         }
 
