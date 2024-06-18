@@ -8,23 +8,18 @@ module.exports = function (sequelize, dataTypes) {
             type : dataTypes.INTEGER
         },
         usuario: {
-            allowNull : false,
             type : dataTypes.STRING
         },
         email: {
-            allowNull : false,
             type : dataTypes.STRING
         },
         contrasenia: {
-            allowNull : false,
             type : dataTypes.STRING
         }, 
         fechaNacimiento: {
-            allowNull : false,
             type : dataTypes.DATE
         },
         DNI: {
-            allowNull : false,
             type : dataTypes.INTEGER
         },
         foto: {
@@ -64,5 +59,5 @@ module.exports = function (sequelize, dataTypes) {
     }
 
     return Usuario;
-  
+
 }

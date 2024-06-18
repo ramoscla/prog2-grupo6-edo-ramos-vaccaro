@@ -1,5 +1,5 @@
 module.exports = function (sequelize, dataTypes) {
-    let alias = "Comentarios";
+    let alias = "Comentario";
     
     let cols = {
         id: {
@@ -40,8 +40,9 @@ Comentario.associate = function(models){
         as:"producto",
         foreingKey: "producto_id"
     })}; 
+return Comentario;
 
 }
-   return Comentario;
+  
 
 

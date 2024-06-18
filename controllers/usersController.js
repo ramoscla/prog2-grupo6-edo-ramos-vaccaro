@@ -1,18 +1,25 @@
-const db = require('../db/datos');
+const db = require('../database/models');
 let {validationResult} = require('express-validator')
 
 const usersController = {
     register: function (req, res) {
-        
-        res.cookie('usuario', 'Carlos',{maxAge: 1000 * 60 * 60}) ;
-        
         res.render('register');
 
     },
     processRegister: function (req, res) {
-        
+        let form = req.body;
+        db.Usuario.create(form)
+        .then(function (result) {
+            return res.redirect('/users/login')
+        })
+        .catch(function(error){
+            console.log(error);
+        })
     },
-
+    login: function (req, res) {
+        console.log(req.cookies.usuario);
+        res.render('login');
+    },
     loginUsuario: function(req,res){
         let form = req.body; 
         let error = validationResult(req); 
@@ -22,14 +29,9 @@ const usersController = {
             where: [{nombre: req.body.nombre}]
          })
         } else {
-            return res.redner("login", {error: error.mapped()})
+            return res.render("login", {error: error.mapped()})
         }
 
-    },
-
-    login: function (req, res) {
-        console.log(req.cookies.usuario);
-        res.render('login');
     },
     profile: function (req, res) {
         res.render('profile', { usuario: db.usuario, productos: db.listaProductos });

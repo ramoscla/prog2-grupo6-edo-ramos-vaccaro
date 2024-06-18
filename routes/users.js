@@ -5,9 +5,21 @@ const usersController = require('../controllers/usersController');
 const {body} = require('express-validator'); 
 
 let validationsRegister = [
-    
+    body('usuario')
+        .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
+        .isLength({ min: 4 }).withMessage('El nombre debe ser más largo')
+        .custom(function (value) {
+            return db.Usuario.findOne({
+                where: { usuario: value },
+            })
+            .then(function (user) {
+                if(user){
+                    throw new Error('El usuario ingresado ya existe.')
+                }
+            })
+        }),
     body('email')
-        .notEmpty().withMessage('Debes completar el email'). bail()
+        .notEmpty().withMessage('Debes completar el email').bail()
         .isEmail()
         .custom(function (value) {
             return db.Usuario.findOne({
@@ -19,11 +31,8 @@ let validationsRegister = [
                 }
             })
         }),    
-    body('nombre')
-        .notEmpty().withMessage('Debes completar el nombre de usuario'). bail()
-        .isLength({ min: 4 }).withMessage('El nombre debe ser más largo'),
-    body('contraseniaUsuario')
-        .notEmpty().withMessage('Debes completar la contraseña'). bail()
+    body('contrasenia')
+        .notEmpty().withMessage('Debes completar la contraseña').bail()
         .isLength({ min: 8 }).withMessage('La contraseña debe contener un mínimo de 8 caracteres'),
 
 ];
@@ -31,7 +40,7 @@ let validationsRegister = [
 
 let validationsLogin = [
     body('nombre')
-    .notEmpty().withMessage('Debes completar el nombre de usuario'). bail()
+    .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
     .custom(function(value, {req}){
         return db.Usuario.findOne({
             where: {nombre :value},
@@ -55,7 +64,7 @@ let validationsLogin = [
 
 
 router.get('/register', usersController.register);
-router.post('/resgister', validationsRegister, usersController.processRegister)
+router.post('/register', validationsRegister, usersController.processRegister);
 
 router.get('/login', usersController.login);
 router.post('/login', validationsLogin, usersController.loginUsuario); // procesar form de login
