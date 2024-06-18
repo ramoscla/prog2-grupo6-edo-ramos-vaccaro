@@ -1,5 +1,5 @@
 const db = require('../db/datos');
-let validationResult = require('express-validator')
+let {validationResult} = require('express-validator')
 
 const usersController = {
     register: function (req, res) {
@@ -16,8 +16,13 @@ const usersController = {
     loginUsuario: function(req,res){
         let form = req.body; 
         let error = validationResult(req); 
-        if (!error.isEmpty()){
-         return res.render ('')   
+        if (error.isEmpty()){
+            // procesamos el controlador marmalemtne 
+         db.usuario.findOne({
+            where: [{nombre: req.body.nombre}]
+         })
+        } else {
+            return res.redner("login", {error: error.mapped()})
         }
 
     },

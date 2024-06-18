@@ -24,7 +24,9 @@
 
 					<label for="nombre">Nombre de usuario:</label>
 					<input type="text" id="nombreUsuario" name="nombreUsuario" required><br>
-
+					<% if (locals.error && error.nombreUsuario){ %>
+					<p class = "feedback"> <%= error.nombreUsuario.msg %> </p>
+					<% } %>
 					<label for="contrasenia">Contraseña:</label>
 					<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" required><br>
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../database/models/index')
+let db = require('../database/models')
 const usersController = require('../controllers/usersController');
 const {body} = require('express-validator'); 
 
@@ -34,7 +34,7 @@ let validationsLogin = [
     .notEmpty().withMessage('Debes completar el nombre de usuario'). bail()
     .custom(function(value, {req}){
         return db.Usuario.findOne({
-            where: {nombre :req.body.nombre},
+            where: {nombre :value},
         })
         .then(function(user){
             if(user != undefined){
@@ -45,7 +45,12 @@ let validationsLogin = [
             }
 
         })
-    })
+       
+
+        
+    }),
+    body('contraseniaUsuario')
+    .notEmpty().withMessage("Por favor complete la contraseña")
 ]; 
 
 
@@ -53,7 +58,7 @@ router.get('/register', usersController.register);
 router.post('/resgister', validationsRegister, usersController.processRegister)
 
 router.get('/login', usersController.login);
-router.post('/login', validationsLogin, usersController.loginUsuario );
+router.post('/login', validationsLogin, usersController.loginUsuario); // procesar form de login
 
 router.get('/profile', usersController.profile);
 

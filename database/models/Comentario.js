@@ -42,7 +42,6 @@ Comentario.associate = function(models){
     })}; 
 
 }
-   
-return Comentario;
+   return Comentario;
 
 
