@@ -53,7 +53,7 @@ router.get('/register', usersController.register);
 router.post('/resgister', validationsRegister, usersController.processRegister)
 
 router.get('/login', usersController.login);
-router.post('/login', );
+router.post('/login', validationsLogin, usersController.loginUsuario );
 
 router.get('/profile', usersController.profile);
 

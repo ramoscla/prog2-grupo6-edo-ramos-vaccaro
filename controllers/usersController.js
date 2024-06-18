@@ -16,6 +16,9 @@ const usersController = {
     loginUsuario: function(req,res){
         let form = req.body; 
         let error = validationResult(req); 
+        if (!error.isEmpty()){
+         return res.render ('')   
+        }
 
     },
 
