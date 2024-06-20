@@ -64,6 +64,11 @@ const usersController = {
     },
     profileEdit: function (req, res) {
         res.render('profile-edit', { usuario: db.usuario });
+    },
+    logout: function (req, res) {
+        req.session.destroy();
+        res.clearCookie('usuario');
+        res.redirect('/');
     }
 };
 
