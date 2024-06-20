@@ -1,20 +1,32 @@
 const db = require('../database/models');
-let {validationResult} = require('express-validator')
+const { validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs'); 
 
 const usersController = {
-    register: function (req, res) {
-        res.render('register');
 
+    register: function (req, res) {
+        return res.render('register');
     },
-    processRegister: function (req, res) {
-        let form = req.body;
-        db.Usuario.create(form)
-        .then(function (result) {
-            return res.redirect('/users/login')
-        })
-        .catch(function(error){
-            console.log(error);
-        })
+    storeRegister: function (req, res) {
+        let errors = validationResult(req);
+
+        if (errors.isEmpty()){
+            let form = req.body;
+
+            let contraEncriptada = bcrypt.hashSync(form.contrasenia, 10);
+            form.contrasenia = contraEncriptada;
+           
+            db.Usuario.create(form)
+                .then(function (result) {
+                    return res.redirect('/users/login')
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+
+        } else {
+            return res.render('register', { errors: errors.mapped(), old: req.body });        
+        }
     },
     login: function (req, res) {
         console.log(req.cookies.usuario);

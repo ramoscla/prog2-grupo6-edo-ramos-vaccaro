@@ -20,13 +20,22 @@
 				<form method="post" action="/users/register" class="formularios">
 
 					<label for="usuario">Nombre de usuario:</label><br>
-					<input type="text" id="usuario" name="usuario" value="" required><br>
+					<input type="text" id="usuario" name="usuario" value="<%= locals.old !== undefined && old.usuario ? old.usuario : '' %>" required><br>
+					<% if (locals.errors && errors.usuario) { %>
+						<p class="feedback"><%= errors.usuario.msg %></p>
+					<% } %>
 
-					<label for="email">Mail:</label><br>
-					<input type="email" id="email" name="email" value="" required><br>
+					<label for="email">Correo electrónico:</label><br>
+					<input type="email" id="email" name="email" value="<%= locals.old !== undefined && old.email ? old.email : '' %>" required><br>
+					<% if (locals.errors && errors.email) { %>
+						<p class="feedback"><%= errors.email.msg %></p>
+					<% } %>			   
 
 					<label for="contrasenia">Contraseña:</label><br>
-					<input type="text" id="contrasenia" name="contrasenia" value="" required><br>
+					<input type="password" id="contrasenia" name="contrasenia" value="<%= locals.old !== undefined && old.contrasenia ? old.contrasenia : '' %>" required><br>
+					<% if (locals.errors && errors.contrasenia) { %>
+						<p class="feedback"><%= errors.contrasenia.msg %></p>
+					<% } %>
 
 					<label for="fechaNacimiento">Fecha de nacimiento:</label><br>
 					<input type="date" id="fechaNacimiento" name="fechaNacimiento" value="" required><br>
