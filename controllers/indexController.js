@@ -3,7 +3,13 @@ const db = require('../database/models');
 
 const indexController = {
     index: function (req, res) {
-        db.Producto.findAll()
+        db.Producto.findAll({
+            order: [
+                    ['createdAt', 'DESC']
+            ]
+            
+        })
+
         .then((resultados) => {
             res.render('index', { productos: resultados });
         })
@@ -17,7 +23,6 @@ const indexController = {
          })
          .then((resultados) => {
              res.render('search-results', { productos: resultados });
-             console.log(resultados);
          })
      }
     // searchResults: function (req, res) {
