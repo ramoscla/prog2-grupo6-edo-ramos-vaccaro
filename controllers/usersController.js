@@ -43,7 +43,8 @@ const usersController = {
          .then(function(usuarioEncontrado){
             //Los pongo en session
             req.session.user ={ 
-                email: usuarioEncontrado.email
+                email: usuarioEncontrado.email,
+                usuario: usuarioEncontrado.usuario
             }})
            
          }

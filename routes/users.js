@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 let db = require('../database/models')
 const usersController = require('../controllers/usersController');
-const { body } = require('express-validator'); 
+let { body } = require('express-validator'); 
 
 let validationsRegister = [
     body('usuario')
@@ -46,7 +46,8 @@ let validationsLogin = [
         
     }),
     body('contrasenia')
-    .notEmpty().withMessage("Por favor complete la contraseña")
+    .notEmpty().withMessage("Por favor ingrese la contraseña")
+    
 ]; 
 
 router.get('/register', usersController.register);
