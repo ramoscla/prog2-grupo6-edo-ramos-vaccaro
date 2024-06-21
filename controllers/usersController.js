@@ -73,7 +73,12 @@ const usersController = {
     },
 
     profile: function(req, res) {
+        usuario = req.query.id;
+        db.Usuario.findByPk(usuario)
+        .then((resultados) => {
         res.render('profile', { usuario: db.usuario, productos: db.listaProductos });
+        console.log(resultados)
+        })
     },
     profileEdit: function(req, res) {
         res.render('profile-edit', { usuario: db.usuario });
