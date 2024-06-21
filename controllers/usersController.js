@@ -29,48 +29,60 @@ const usersController = {
         }
     },
     login: function (req, res) {
-        console.log(req.cookies.usuario);
-        res.render('login');
-    },
-    loginUsuario: function(req,res){
-        let form = req.body; 
-        let error = validationResult(req); 
-        if (error.isEmpty()){
-            // procesamos el controlador normalmente 
-         db.usuario.findOne({
-            where: [{email: req.body.email}]
-         })
-         .then(function(usuarioEncontrado){
-            //Los pongo en session
-            req.session.user ={ 
-                email: usuarioEncontrado.email,
-                usuario: usuarioEncontrado.usuario
-            }})
-           
-         }
-         //if (req.body.recordarme != undefined){
-           // ('cookieEspecial', 'el dato que quiero guardar', {maxAge: 1000*60*123123123})
-             //   }
-                //Y si el usuario quiere, agregar la cookie para que lo recuerde.
-              //  return res.redirect('/');
-          //  )})
-
-         else {
-            return res.render("login", {error: error.mapped()})
+        
+        if (req.session.user != undefined){
+            return res.redirect('/')
+        } else {
+            return res.render('login');
         }
-
     },
-    profile: function (req, res) {
+    loginUsuario: function(req, res) {
+        let form = req.body;
+        let error = validationResult(req);
+        
+        if (error.isEmpty()) {
+            // Procesamos el controlador normalmente
+            db.Usuario.findOne({
+                where: { email: form.email }
+            })
+        
+            .then(function(usuarioEncontrado) {
+                if (usuarioEncontrado != null){
+                 // Ponemos en session los datos del usuario encontrado
+                 let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
+                 if (check) {
+                    req.session.user = { 
+                        email: usuarioEncontrado.email,
+                        usuario: usuarioEncontrado.usuario
+                    }  
+
+                    if(form.recordarme != undefined){
+                        res.cookie('usuario_id', usuarioEncontrado.id, {maxAge: 1000*60*123123123})
+                    }
+                    //Y si el usuario quiere, agregar la cookie para que lo recuerde.
+                    
+                    return res.redirect('/');
+    
+                };
+               
+            }});
+        } else {
+            // Si hay errores de validación, renderizamos el formulario de login con los errores
+            res.render("login", { error: error.mapped() });
+        }
+    },
+
+    profile: function(req, res) {
         res.render('profile', { usuario: db.usuario, productos: db.listaProductos });
     },
-    profileEdit: function (req, res) {
+    profileEdit: function(req, res) {
         res.render('profile-edit', { usuario: db.usuario });
     },
-    logout: function (req, res) {
+    logout: function(req, res) {
         req.session.destroy();
         res.clearCookie('usuario');
         res.redirect('/');
-    }
+    } 
 };
 
 module.exports = usersController;

@@ -22,7 +22,7 @@
 			<h2 class="col-12"> 
 				<form action="/users/login" method="post" class="formularios">
 
-					<label for="nombre">Correo Electrónico:</label>
+					<label for="email">Correo Electrónico:</label>
 					<input type="email" id="email" name="email" value= "" required><br>
 					<% if (locals.error && error.email){ %>
 					<p class = "feedback"> <%= error.email.msg %> </p>
