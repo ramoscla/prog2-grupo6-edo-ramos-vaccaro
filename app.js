@@ -27,6 +27,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //session
+app.use(session( { secret: "Nuestro mensaje secreto",
+  resave: false,
+  saveUninitialized: true 
+}));
 
 app.use(function(req, res, next) {
   if (req.session.user != undefined) {
@@ -38,22 +42,21 @@ app.use(function(req, res, next) {
 
 app.use(function(req, res, next) {
   if (req.cookies.usuario_id != undefined && req.session.user == undefined) {
-    let idUsuario = req.cookies.usuario_id;
+    let idUsuario = req.cookies.usuario_id; 
+
     db.Usuario.findByPk(idUsuario)
-    .then((result) => { 
+    .then((result) => {
       req.session.user = result;
-      req.locals.user = result;
+      res.locals.user = result;
       return next();
-    })
-    .catch ((error) => {
+    }).catch((error) => {
       return console.log(error);
     });
   } else {
-  return next();
+    return next();
   }
-}
+});
 
-);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/product', productRouter);

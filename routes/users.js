@@ -54,6 +54,7 @@ router.get('/register', usersController.register);
 router.post('/register', validationsRegister, usersController.storeRegister);
 router.get('/login', usersController.login);
 router.post('/login', validationsLogin, usersController.loginUsuario); // procesar form de login
+router.post('/logout', usersController.logout);	
 router.get('/profile', usersController.profile);
 router.get('/profile/edit', usersController.profileEdit);
 
