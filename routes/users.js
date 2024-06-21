@@ -27,24 +27,25 @@ let validationsRegister = [
 ];
 
 let validationsLogin = [
-    body('nombre')
-    .notEmpty().withMessage('Debes completar el nombre de usuario').bail()
-    .custom(function(value, {req}){
+    body('email')
+    .notEmpty().withMessage('Debes completar el campo con tu email').bail()
+    .isEmail().withMessage('Por favor ingrese un email válido')
+    .custom(function(value){
         return db.Usuario.findOne({
-            where: {nombre :value},
+            where: {email :value},
         })
         .then(function(user){
             if(user != undefined){
                 return true;
             }
             else{
-                throw new Error ('Este nombre de usuario no existe')
+                throw new Error ('Este email no ha sido registrado.')
             }
 
         })
         
     }),
-    body('contraseniaUsuario')
+    body('contrasenia')
     .notEmpty().withMessage("Por favor complete la contraseña")
 ]; 
 

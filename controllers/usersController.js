@@ -38,12 +38,12 @@ const usersController = {
         if (error.isEmpty()){
             // procesamos el controlador normalmente 
          db.usuario.findOne({
-            where: [{nombre: req.body.nombre}]
+            where: [{email: req.body.email}]
          })
          .then(function(usuarioEncontrado){
             //Los pongo en session
             req.session.user ={ 
-                nombre: usuarioEncontrado.nombre
+                email: usuarioEncontrado.email
             }})
            
          }

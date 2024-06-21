@@ -20,17 +20,17 @@
 
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/users/profile" method="post" class="formularios">
+				<form action="/users/login" method="post" class="formularios">
 
-					<label for="nombre">Nombre de usuario:</label>
-					<input type="text" id="nombreUsuario" name="nombreUsuario" required><br>
-					<% if (locals.error && error.nombreUsuario){ %>
-					<p class = "feedback"> <%= error.nombreUsuario.msg %> </p>
+					<label for="nombre">Correo Electrónico:</label>
+					<input type="email" id="email" name="email" value= "" required><br>
+					<% if (locals.error && error.email){ %>
+					<p class = "feedback"> <%= error.email.msg %> </p>
 					<% } %>
 					<label for="contrasenia">Contraseña:</label>
-					<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" required><br>
-					<% if(locals.errors && errors.contraseniaUsuario){  %> 
-						<p><%= errors.contraseniaUsuario.msg %></p>
+					<input type="password" id="contrasenia" name="contrasenia" value="" required><br>
+					<% if(locals.errors && errors.contrasenia){  %> 
+						<p><%= errors.contrasenia.msg %></p>
 						<% } %>
 					  
 
