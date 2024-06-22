@@ -13,9 +13,15 @@ const productController = {
         })
     },
     productAdd: function (req, res) {
-        res.render('product-add', { productos: db.listaProductos, usuario: db.usuario });
+        if (req.session.user != undefined) {
+            return res.render('product-add');
+        } else {
+            return res.redirect("/users/login");
+        }
     },
-
+    productStore: function (req,res) {
+        // a completar
+    }
 };
 
 module.exports = productController;
