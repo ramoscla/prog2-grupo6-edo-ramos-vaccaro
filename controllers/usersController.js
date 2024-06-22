@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs'); 
+const { Association } = require('sequelize');
 
 const usersController = {
 
@@ -71,12 +72,27 @@ const usersController = {
     },
 
     profile: function(req, res) {
-        usuario = req.params.id;
-        db.Usuario.findByPk(usuario)
-        .then((resultados) => {
-        res.render('profile', { usuario: db.usuario, productos: db.listaProductos });
-        console.log(resultados)
+        let idUsuario  = req.params.id;
+        db.Usuario.findByPk(idUsuario)
+        
+        
+        .then(function(resultados){
+           
+            console.log(resultados)
+            console.log('hola')
+            return res.render('profile', {
+                usuario: resultados
+                
+               })
         })
+        .catch (function(error){
+            console.log(error);
+        })
+
+
+       // .then((resultados) => {
+        //res.render('profile', { usuario: db.usuario, productos: db.listaProductos });
+        //console.log(resultados) })
     },
     profileEdit: function(req, res) {
         res.render('profile-edit', { usuario: db.usuario });

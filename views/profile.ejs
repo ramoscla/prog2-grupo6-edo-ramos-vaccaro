@@ -14,25 +14,26 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="/images/users/<%= usuario.fotoPerfil %>" alt="foto de perfil" class="fotoPerfil">
+				<img src="/images/users/<%= usuario.foto%>" alt="foto de perfil" class="fotoPerfil">
 			</div>
 
 			<div class="data-container col-6">
 
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> <%= usuario.nombreUsuario %>
+					<h1 class="main-title"> <%= usuario.usuario %>
 						<a href="/users/profile/edit">
 							<i class="fas fa-cog"></i>
 						</a>
 					</h1>
 					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 				</div>
+				<div>
+					<p> <%= usuario.usuario %> </p>
+				</div>
 
 				<div>
 					<ul class="informacionUsuario">
-						<li>8 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
+						
 					</ul>
 				</div>
 
@@ -48,23 +49,7 @@
 				<h2 class="products-title">Mis productos</h2>
 			</div>
 			<!-- Show mis productos -->
-			<% for (let i = 0; i < 8; i++) { %>
-                <div class="col-12 col-sm-6 col-lg-3">
-                    <section class="product-box">
-                        <a href="/product">
-                            <figure class="product-box_image">
-                                
-								<img src= "/images/products/<%=  productos[i].foto%>">
-                            </figure>
-                            <article class="product-box_data">
-                                <h2><%= productos[i].nombre %></h2>
-                                <p><%= productos[i].descripcion %></p>
-                                <p>Comentarios: <%= productos[i].comentarios.length %></p>
-                            </article>
-                        </a>
-                    </section>
-                </div>
-				<% } %>
+			
 		</div>
 	</div>
 	<!-- /Mis productos -->
