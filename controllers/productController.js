@@ -25,8 +25,6 @@ const productController = {
         let errors = validationResult(req)
 
         if (errors.isEmpty()) {
-            
-            form.usuario_id = req.session.user.id;
 
             db.Producto.create(form)
             .then(function (resultados) {
@@ -35,6 +33,7 @@ const productController = {
             .catch(function(errors){
                 console.log(errors);
             })
+
         }  else {
             return res.render('product', { errors: errors.mapped(), old: req.body});        
         }     

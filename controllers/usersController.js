@@ -50,6 +50,7 @@ const usersController = {
                 if (usuarioEncontrado != null){
                  // Ponemos en session los datos del usuario encontrado
                  let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
+                 
                  if (check) {
                     req.session.user = usuarioEncontrado
 
