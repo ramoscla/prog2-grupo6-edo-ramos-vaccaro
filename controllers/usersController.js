@@ -51,10 +51,7 @@ const usersController = {
                  // Ponemos en session los datos del usuario encontrado
                  let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
                  if (check) {
-                    req.session.user = { 
-                        email: usuarioEncontrado.email,
-                        usuario: usuarioEncontrado.usuario
-                    }  
+                    req.session.user = usuarioEncontrado
 
                     if(form.recordarme != undefined){
                         res.cookie('usuario_id', usuarioEncontrado.id, {maxAge: 1000*60*123123123})
