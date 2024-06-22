@@ -143,6 +143,8 @@ i.fas.fa-search {
   border: 0px;
   cursor: pointer;
   font-size: 1em;
+  color: white;
+  font-family: "Lato", sans-serif;
 }
 
 .logout:hover {

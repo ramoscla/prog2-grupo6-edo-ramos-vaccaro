@@ -1,12 +1,9 @@
-//require express sesion
-
-const session = require('express-session');
-
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 var db = require('./database/models');
 
 var indexRouter = require('./routes/index');
@@ -27,7 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //session
-app.use(session( { secret: "Nuestro mensaje secreto",
+app.use(session( 
+{ secret: "Proyecto Integrador",
   resave: false,
   saveUninitialized: true 
 }));
