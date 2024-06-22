@@ -1,4 +1,5 @@
 const db = require('../database/models');
+const { validationResult } = require('express-validator'); 
 
 const productController = {
     product: function (req, res) {
@@ -14,15 +15,31 @@ const productController = {
     },
     productAdd: function (req, res) {
         if (req.session.user != undefined) {
-            return res.render('product-add');
+            return res.render('product-add', { usuario: req.session.user });
         } else {
-            return res.redirect("/users/login");
+            return res.redirect('/users/login');
         }
     },
-    productStore: function (req,res) {
-        // a completar
+    productStore: function (req, res) {
+        let form = req.body;
+        let errors = validationResult(req)
+
+        if (errors.isEmpty()) {
+            
+            form.usuario_id = req.session.user.id;
+
+            db.Producto.create(form)
+            .then(function (resultados) {
+                return res.redirect('/product/' + resultados.id)
+            })
+            .catch(function(errors){
+                console.log(errors);
+            })
+        }  else {
+            return res.render('product', { errors: errors.mapped(), old: req.body});        
+        }     
     }
-};
+}
 
 module.exports = productController;
 

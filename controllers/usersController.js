@@ -17,7 +17,7 @@ const usersController = {
             form.contrasenia = contraEncriptada;
            
             db.Usuario.create(form)
-                .then(function (result) {
+                .then(function (resultados) {
                     return res.redirect('/users/login')
                 })
                 .catch(function(error){
@@ -38,9 +38,9 @@ const usersController = {
     },
     loginUsuario: function(req, res) {
         let form = req.body;
-        let error = validationResult(req);
+        let errors = validationResult(req);
         
-        if (error.isEmpty()) {
+        if (errors.isEmpty()) {
             // Procesamos el controlador normalmente
             db.Usuario.findOne({
                 where: { email: form.email }
@@ -68,7 +68,7 @@ const usersController = {
             }});
         } else {
             // Si hay errores de validación, renderizamos el formulario de login con los errores
-            res.render("login", { error: error.mapped() });
+            res.render("login", { errors: errors.mapped() });
         }
     },
 
