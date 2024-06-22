@@ -73,7 +73,7 @@ const usersController = {
     },
 
     profile: function(req, res) {
-        usuario = req.query.id;
+        usuario = req.params.id;
         db.Usuario.findByPk(usuario)
         .then((resultados) => {
         res.render('profile', { usuario: db.usuario, productos: db.listaProductos });

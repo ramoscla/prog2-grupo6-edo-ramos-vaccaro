@@ -2,7 +2,7 @@ const db = require('../database/models');
 
 const productController = {
     product: function (req, res) {
-        let objeto = req.query.id;
+        let objeto = req.params.id;
         console.log(objeto);
         db.Producto.findByPk (objeto,
             {include : [{association: 'usuario'}]}
