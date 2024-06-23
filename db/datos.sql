@@ -4,7 +4,7 @@ USE datos;
 
 CREATE TABLE usuarios(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
-    usuario VARCHAR(25) UNIQUE NOT NULL,
+    usuario VARCHAR(25) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     contrasenia VARCHAR(100) NOT NULL,
     fechaNacimiento DATE NOT NULL,
