@@ -49,8 +49,14 @@
 					</section>
 
 					<form class="formularios comentarios" action="/product" method="get">
-						<input type="text" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						<% if (locals.user != undefined) { %>
+							<input type="text" placeholder="Agregar comentario">
+							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						<% } else if (locals.user == undefined) {  %>
+							<p  class="product-detail-description"> Debes iniciar sesión para comentar. </p>
+
+							<% } %>
+						
 					</form>
 					
 				</div>

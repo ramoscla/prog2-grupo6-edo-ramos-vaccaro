@@ -118,25 +118,47 @@ const productController = {
              return res.redirect('/users/login ')
             } else {
                      
-                        let comentario = {
-                            id_usuario: req.session.user.id,
-                            id_producto: req.params.id,
-                            texto: form.comentario
-                        }
-
-                        db.Comentario.create(comentario)
-                        .then((result) => {
-                            return res.redirect("/product/id/" + req.params.id);
-                        }).catch((err) => {
-                            console.log(err);
-                            return res.redirect("/product/id/" + req.params.id);
-                        })
-       
             
             console.log(comentario)
         }
   
     }
-}
+
+},
+productComentarioStore: function(req,res){
+
+        let form = req.body;
+        let errors = validationResult(req);
+    
+            if (errors.isEmpty()) {
+
+                    let comentario = {
+                        id_usuario: req.session.user.id,
+                        id_producto: req.params.id,
+                        texto: form.comentario
+                    }
+
+                    db.Comentario.create(comentario)
+                    .then((results) => {
+                        return res.redirect("/product/id/" + req.params.id);
+
+                    }).catch((err) => {
+                        console.log(err);
+                        return res.redirect("/product/id/" + req.params.id);
+                    })
+   
+                .then(function (resultados) {
+                    return res.redirect('/product/' + resultados.id)
+                })
+                .catch(function(errors){
+                    console.log(errors);
+                })
+                
+    
+            }  else {
+                return res.render('product', { errors: errors.mapped(), old: req.body});        
+            } 
+        
+    }
 }
 module.exports = productController;
