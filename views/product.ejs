@@ -37,12 +37,16 @@
 
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for (let i = 0; i < productos.comentarios; i++) { %>
+						<% for (let i = 0; i < productos.comentarios.length; i++) { %>
 
 							<article>
-								<img src= "/images/users/<%=  productos[0].comentarios[i].fotoPerfil%>"> 
 								<div> 
-									<p> <a href="/users/profile"> <%=productos.comentarios[i].nombreUsuario%> : </a> <%= productos[0].comentarios[i].texto%> </p>
+									
+									<a href="/users/profile/<%= productos.comentarios[i].usuario.id %>">
+									<h2 > <%= productos.comentarios[i].usuario.usuario %> </h2>
+									</a>
+									<p > <%= productos.comentarios[i].comentario %> </p>
+
 								</div>
 							</article>
 						<% } %>
