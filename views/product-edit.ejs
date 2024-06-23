@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- Include Head -->
+<%- include("./partials/head.ejs") %>
+	<!-- Include Head -->
+
+	<body>
+		<!-- Header -->
+		<% if (locals.user !=undefined) { %>
+			<%- include('./partials/headerLogueado') %>
+				<% } else { %>
+					<%- include('./partials/header') %>
+						<% } %>
+							<!-- /Header -->
+
+							<!-- product detail -->
+
+							<div class="container products-wrapper">
+								<div class="d-flex align-items-center">
+									<form action="/product/edit" method="POST">
+										<h2 class="products-title">
+											<label for="nombre">
+												<%= productos.nombre %>
+											</label><br>
+											<input type="text" id="nombre" name="nombre" required><br>
+										</h2>
+										<input type="hidden" name="id" value="<%= productos.id %>">
+											
+										<p class="product-detail-description"> <a
+												href="/users/profile/<%= productos.usuario.id %>"> Publicado por: <%=
+													productos.usuario.usuario %></a></p>
+								</div>
+
+								<div class="product-detail">
+									<div class="row">
+
+										<article class="col-12 col-lg-8 product-detail-info">
+											<label for="nombre"><img src="<%= productos.foto %>" alt="foto del producto"
+													class="foto-producto"></label><br>
+											<input type="text" id="foto" name="foto" required><br></h2>
+
+											<label for="descripcion">
+												<%= productos.descripcion %>
+											</label><br>
+											<textarea id="descripcion" name="descripcion" required></textarea><br>
+											<% if (locals.errors && errors.descripcion) { %>
+												<p class="feedback">
+													<%= errors.descripcion.msg %>
+												</p>
+												<% } %>
+
+
+
+										</article>
+
+										<input type="submit" value="Guardar producto">
+										</form>
+
+									</div>
+
+								</div>
+							</div>
+							<!-- /product detail -->
+
+							<!-- footer -->
+							<%- include('./partials/footer.ejs') %>
+								<!-- /footer -->
+
+	</body>
+
+</html>
