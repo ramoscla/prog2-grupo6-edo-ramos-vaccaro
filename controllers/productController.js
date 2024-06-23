@@ -6,7 +6,8 @@ const productController = {
         let objeto = req.params.id;
         console.log(objeto);
         db.Producto.findByPk (objeto,
-            {include : [{association: 'usuario'},
+            {include : [
+              {association: 'usuario'},
               {association: 'comentarios', include: [ {association :'usuario'}]}
 
             ]}
