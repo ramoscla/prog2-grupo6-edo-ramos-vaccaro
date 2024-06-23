@@ -52,25 +52,30 @@ let validationsLogin = [
 
 let validationsProfileEdit = [
     body('usuario')
-        .notEmpty().withMessage('Debes completar el nombre de usuario').bail(),
+    .notEmpty().withMessage('Debes completar el nombre de usuario').bail(),
     body('email')
-    .custom(function (value) {
-        if (value) {
+    .notEmpty().withMessage('Debes completar el email').bail()
+    .isEmail()
+    .custom(function (value, {req}) {
+        if (value !== req.session.user.email) {
             return db.Usuario.findOne({
                 where: { email: value },
             })
             .then(function (user) {
-                if(user){
-                    throw new Error('El mail ingresado ya existe.')
+                if (user) {
+                    throw new Error('El mail ingresado ya existe.');
                 }
-            })
+            });
         }
+        return true; 
     }),  
     body('contrasenia')
         .custom(function (value) {
-            if (value != null && value.isLength < 4) {
+            console.log(value);
+            if (value && value.length < 4) {
                 throw new Error('La contraseña debe contener un mínimo de 4 caracteres')
             }
+            return true
         })
     
 ];
@@ -82,7 +87,7 @@ router.post('/login', validationsLogin, usersController.loginUsuario); // proces
 router.post('/logout', usersController.logout);	
 
 router.get('/profile/edit', usersController.profileEdit);
-router.post('/profile/edit', usersController.profileEditStore);
+router.post('/profile/edit', validationsProfileEdit, usersController.profileEditStore);
 
 router.get('/profile/:id?', usersController.profile);
 ;
