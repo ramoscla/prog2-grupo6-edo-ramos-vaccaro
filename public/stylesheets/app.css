@@ -16,6 +16,8 @@
 body a {
   color: white;
   font-family: "Lato", sans-serif;
+  font-weight: 500;
+  
 }
 
 /*====== Basics ======*/
@@ -83,6 +85,8 @@ hr {
   font-size: 1.5em;
   margin-top: 20px;
   text-align: center;
+  font-family: inherit;
+  font-weight: 500;
 }
 
 .search-form {
@@ -174,8 +178,8 @@ i.fas.fa-search {
 }
 
 .products-title {
-  font-size: 2.4em;
-  font-weight: 400;
+  font-size: 3.4em;
+  font-weight: 750;
   color: var(--white);
 }
 
@@ -486,8 +490,9 @@ textarea.form-input {
 }
 
 .main-title {
-  font-size: 25px;
+  font-size: 30px;
   margin-bottom: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .btn {
@@ -534,6 +539,7 @@ textarea.form-input {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    
   }
 
   .left-navbar a,
