@@ -73,11 +73,15 @@ const usersController = {
 
     profile: function(req, res) {
         let UsuarioId  = req.params.id;
-        db.Usuario.findByPk(UsuarioId)
+        db.Usuario.findByPk(UsuarioId, { include: [
+            {association: 'productos'},
+            {association : 'comentarios'} 
+        ],
+        order :[['createdAt', 'DESC']]})
         
         
         .then(function(resultados){
-           
+           // 
             console.log(resultados)
             console.log('hola')
             return res.render('profile', {
