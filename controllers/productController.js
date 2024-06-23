@@ -2,24 +2,30 @@ const db = require("../database/models");
 const { validationResult } = require("express-validator");
 
 const productController = {
-  product: function (req, res) {
-    let objeto = req.params.id;
-    db.Producto.findByPk(objeto, {
-      include: [{ association: "usuario" }],
-    }).then((resultados) => {
-      res.render("product", { productos: resultados });
-    });
-  },
-  productAdd: function (req, res) {
-    if (req.session.user != undefined) {
-      return res.render("product-add", { usuario: req.session.user });
-    } else {
-      return res.redirect("/users/login");
-    }
-  },
-  productStore: function (req, res) {
-    let form = req.body;
-    let errors = validationResult(req);
+    product: function (req, res) {
+        let objeto = req.params.id;
+        console.log(objeto);
+        db.Producto.findByPk (objeto,
+            {include : [{association: 'usuario'},
+              {association: 'comentarios', include: [ {association :'usuario'}]}
+
+            ]}
+        )
+        .then( (resultados) => {
+            res.render('product', { productos: resultados  });
+            console.log(resultados);
+        })
+    },
+    productAdd: function (req, res) {
+        if (req.session.user != undefined) {
+            return res.render('product-add', { usuario: req.session.user });
+        } else {
+            return res.redirect('/users/login');
+        }
+    },
+    productStore: function (req, res) {
+        let form = req.body;
+        let errors = validationResult(req)
 
         if (errors.isEmpty()) {
 
