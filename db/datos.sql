@@ -82,7 +82,7 @@ VALUES
     (4, 7, "Súper blanditas."),
     (1, 8, "Perfectas para un snack saludable."),
     (5, 8, "Me encantan en ensaladas."),
-    (4, 8, "Tremendasss")
+    (4, 8, "Tremendasss"),
     (1, 9, "Excelente para ensaladas."),
     (4, 9, "Me encanta con yogur."),
     (2, 9, "Muy nutritivos"),

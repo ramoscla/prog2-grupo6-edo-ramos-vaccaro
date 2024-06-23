@@ -72,16 +72,17 @@ const usersController = {
     },
 
     profile: function(req, res) {
-        let UsuarioId  = req.params.id;
-        db.Usuario.findByPk(UsuarioId, { include: [
+        let usuarioId  = req.params.id;
+        console.log(usuarioId);
+
+        db.Usuario.findByPk(usuarioId, { include: [
             {association: 'productos'},
             {association : 'comentarios'} 
         ],
         order :[['createdAt', 'DESC']]})
         
-        
         .then(function(resultados){
-           // 
+
             console.log(resultados)
             console.log('hola')
             return res.render('profile', {
@@ -93,13 +94,57 @@ const usersController = {
             console.log(error);
         })
 
-
        // .then((resultados) => {
         //res.render('profile', { usuario: db.usuario, productos: db.listaProductos });
         //console.log(resultados) })
     },
     profileEdit: function(req, res) {
-        res.render('profile-edit', { usuario: db.usuario });
+        if (req.session.user != undefined) {
+        
+            let usuarioId = req.session.user.id; 
+
+            db.Usuario.findByPk(usuarioId)
+            .then(function (resultados) {
+                res.render('profile-edit', {usuario: resultados})
+            })
+            .catch (function(error){
+                console.log(error);
+            })
+
+        } else {
+            res.redirect('/users/login')
+        }
+    },
+    profileEditStore: function (req, res) {
+        
+        let form = req.body;
+        let errors = validationResult(req);
+        let usuarioId = req.session.user.id; 
+
+        if (errors.isEmpty()){
+
+            let contraEncriptada = bcrypt.hashSync(form.contrasenia, 10);
+            form.contrasenia = contraEncriptada;
+
+            db.Usuario.update(form, { where: { id: usuarioId }})
+                .then(function (resultados) {
+
+                    req.session.user.usuario = form.usuario;
+                    req.session.user.email = form.email;
+                    req.session.user.contrasenia = form.contrasenia;
+                    req.session.user.fechaNacimiento = form.Nacimiento;
+                    req.session.user.DNI = form.DNI;
+                    req.session.user.foto= form.foto;
+        
+                    return res.redirect('/users/profile/' + usuarioId)
+                })
+                .catch(function(error){
+                    console.log(error);
+                })
+
+        } else {
+            return res.render('profile-edit', { errors: errors.mapped(), old: req.body, usuario: form});        
+        }
     },
     logout: function(req, res) {
         req.session.destroy();

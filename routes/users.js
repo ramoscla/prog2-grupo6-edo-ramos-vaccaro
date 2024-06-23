@@ -50,12 +50,27 @@ let validationsLogin = [
     
 ]; 
 
+let validationsProfileEdit = [
+    body('usuario')
+        .notEmpty().withMessage('Debes completar el nombre de usuario').bail(),
+    body('email')
+        .notEmpty().withMessage('Debes completar el email').bail()
+        .isEmail(),    
+    body('contrasenia')
+        .notEmpty().withMessage('Debes completar la contraseña').bail()
+        .isLength({ min: 4 }).withMessage('La contraseña debe contener un mínimo de 4 caracteres')
+    
+];
+
 router.get('/register', usersController.register);
 router.post('/register', validationsRegister, usersController.storeRegister);
 router.get('/login', usersController.login);
 router.post('/login', validationsLogin, usersController.loginUsuario); // procesar form de login
 router.post('/logout', usersController.logout);	
-router.get('/profile/:id?', usersController.profile);
-router.get('/profile/edit', usersController.profileEdit);
 
+router.get('/profile/edit', usersController.profileEdit);
+router.post('/profile/edit', validationsProfileEdit, usersController.profileEditStore);
+
+router.get('/profile/:id?', usersController.profile);
+;
 module.exports = router;

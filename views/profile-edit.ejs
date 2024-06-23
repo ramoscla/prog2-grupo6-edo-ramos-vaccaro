@@ -18,25 +18,34 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-			<form method="get" action="/users/profile" class="formularios">
-
-				<label for="mail">Mail:</label><br>
-				<input type="email" id="email" name="email"><br>
+			<form method="post" action="/users/profile/edit" class="formularios">
 
 				<label for="nombre">Nombre de usuario:</label><br>
-				<input type="text" id="nombreUsuario" name="nombreUsuario"><br>
+				<input type="text" id="usuario" name="usuario" value="<%= usuario.usuario %>"><br>
+				<% if (locals.errors && errors.usuario) { %>
+					<p class="feedback"><%= errors.usuario.msg %></p>
+				<% } %>		
+
+				<label for="mail">Mail:</label><br>
+				<input type="email" id="email" name="email" value="<%= usuario.email %>"><br>
+				<% if (locals.errors && errors.email) { %>
+					<p class="feedback"><%= errors.email.msg %></p>
+				<% } %>		
 
 				<label for="contrasenia">Contraseña:</label><br>
-				<input type="text" id="contraseniaUsuario" name="contraseniaUsuario" ><br>
+				<input type="password" id="contrasenia" name="contrasenia" ><br>
+				<% if (locals.errors && errors.contrasenia) { %>
+					<p class="feedback"><%= errors.contrasenia.msg %></p>
+				<% } %>		
 
 				<label for="fechaNacimiento">Fecha de nacimiento:</label><br>
-				<input type="date" id="fechaNacimiento" name="fechaNacimiento" ><br>
+				<input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= usuario.fechaNacimiento %>"><br>
 
-				<label for="documento">Numero de documento:</label><br>
-				<input type="number" id="documento" name="documento"><br>
+				<label for="DNI">Numero de documento:</label><br>
+				<input type="number" id="DNI" name="DNI" value="<%= usuario.DNI %>"><br>
 
-				<label for="fotoPerfil">Foto de perfil:</label><br>
-				<input type="file" id="fotoPerfil" name="fotoPerfil"><br>
+				<label for="foto">Foto de perfil:</label><br>
+				<input type="file" id="foto" name="foto" value="<%= usuario.foto %>"><br>
 
 				<input type="submit" value="Confirmar cambios">
 
