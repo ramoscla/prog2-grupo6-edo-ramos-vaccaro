@@ -37,7 +37,37 @@ const productController = {
         }  else {
             return res.render('product', { errors: errors.mapped(), old: req.body});        
         }     
+    },
+    productComentario: function(req,res){
+        let form = req.body;
+        let errors = validationResult(req)
+
+        if (errors.isEmpty()) {
+
+            if(req.session.user == undefined ){
+             return res.redirect('/users/login ')
+            } else {
+                     
+                        let comentario = {
+                            id_usuario: req.session.user.id,
+                            id_producto: req.params.id,
+                            texto: form.comentario
+                        }
+
+                        db.Comentario.create(comentario)
+                        .then((result) => {
+                            return res.redirect("/product/id/" + req.params.id);
+                        }).catch((err) => {
+                            console.log(err);
+                            return res.redirect("/product/id/" + req.params.id);
+                        })
+       
+            
+            console.log(comentario)
+        }
+  
     }
+}
 }
 
 module.exports = productController;

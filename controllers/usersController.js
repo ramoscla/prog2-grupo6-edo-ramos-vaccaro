@@ -49,22 +49,28 @@ const usersController = {
         
             .then(function(usuarioEncontrado) {
                 if (usuarioEncontrado != null){
+                
+                        let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
+                        
+                        if (check) {
                  // Ponemos en session los datos del usuario encontrado
-                 let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
-                 
                  if (check) {
                     req.session.user = usuarioEncontrado;
 
                     if(form.recordarme != undefined){
                         res.cookie('usuarioId', usuarioEncontrado.id, {maxAge: 1000*60*123123123})
                     }
+                    req.session.user = usuarioEncontrado;
+
+                
                     //Y si el usuario quiere, agregar la cookie para que lo recuerde.
                     
                     return res.redirect('/');
     
               
                
-            }}});
+            }}} }
+        );
         } else {
             // Si hay errores de validación, renderizamos el formulario de login con los errores
             res.render("login", { errors: errors.mapped() });

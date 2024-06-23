@@ -3,6 +3,8 @@ const router = express.Router();
 let db = require('../database/models')
 const usersController = require('../controllers/usersController');
 let { body } = require('express-validator'); 
+const bcrypt = require('bcryptjs'); 
+
 
 let validationsRegister = [
     body('usuario')

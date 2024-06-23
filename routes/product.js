@@ -8,10 +8,16 @@ let validationsProductAdd = [
         .notEmpty().withMessage('Debes completar este campo'),
     body('foto')
         .notEmpty().withMessage('Debes completar este campo')
-        .isURL().withMessage('Debes completar con una URL valida'),
+        .isURL().withMessage('Debes completar con una URL válida'),
     body('descripcion')
         .notEmpty().withMessage('Debes completar este campo').bail()
         
+];
+
+let validationsProductComentario = [
+    body('comentario')
+        .notEmpty().withMessage('Debes completar el campo de comentario.').bail()
+        .isLength({ min: 3 }).withMessage('El comentario debe tener al menos 3 caracteres.')
 ];
 
 router.get('/add', productController.productAdd);
