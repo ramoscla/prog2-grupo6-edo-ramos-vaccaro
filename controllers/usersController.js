@@ -79,7 +79,6 @@ const usersController = {
 
     profile: function(req, res) {
         let usuarioId  = req.params.id;
-        console.log(usuarioId);
 
         db.Usuario.findByPk(usuarioId, { include: [
             {association: 'productos'},
@@ -89,8 +88,6 @@ const usersController = {
         
         .then(function(resultados){
 
-            console.log(resultados)
-            console.log('hola')
             return res.render('profile', {
                 usuario: resultados
                 

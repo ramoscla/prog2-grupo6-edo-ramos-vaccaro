@@ -49,21 +49,6 @@ let validationsLogin = [
     }),
     body('contrasenia')
     .notEmpty().withMessage('Por favor ingrese la contraseña')
-    .custom(function(value, {req}) {
-       
-        return db.Usuario.findOne({
-            where: { email: req.body.email }
-        })
-        .then(function(usuarioEncontrado){
-            if (usuarioEncontrado) {
-                console.log(usuarioEncontrado)
-                let check = bcrypt.compareSync(value, usuarioEncontrado.contrasenia);
-                if (!check) {
-                    throw new Error('Contraseña incorrecta');
-                }
-            }
-        });
-    })
     
 ]; 
 
