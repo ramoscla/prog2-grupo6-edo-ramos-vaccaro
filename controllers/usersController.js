@@ -52,7 +52,6 @@ const usersController = {
                 
                         let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
                         
-                        if (check) {
                  // Ponemos en session los datos del usuario encontrado
                  if (check) {
                     req.session.user = usuarioEncontrado;
@@ -69,7 +68,7 @@ const usersController = {
     
               
                
-            }}} }
+            }}} 
         );
         } else {
             // Si hay errores de validación, renderizamos el formulario de login con los errores
