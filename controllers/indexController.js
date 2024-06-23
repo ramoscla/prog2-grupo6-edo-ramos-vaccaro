@@ -16,9 +16,10 @@ const indexController = {
     },
     searchResults: function (req, res) {
         let objeto = req.query.search;
+        let op = db.Sequelize.Op;
          db.Producto.findAll({
              where: [
-                 {nombre : objeto }
+                 {nombre : {[op.like] : `%${objeto}%` }}
             ]
          })
          .then((resultados) => {
