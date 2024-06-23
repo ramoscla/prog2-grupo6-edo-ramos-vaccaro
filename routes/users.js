@@ -54,11 +54,24 @@ let validationsProfileEdit = [
     body('usuario')
         .notEmpty().withMessage('Debes completar el nombre de usuario').bail(),
     body('email')
-        .notEmpty().withMessage('Debes completar el email').bail()
-        .isEmail(),    
+    .custom(function (value) {
+        if (value) {
+            return db.Usuario.findOne({
+                where: { email: value },
+            })
+            .then(function (user) {
+                if(user){
+                    throw new Error('El mail ingresado ya existe.')
+                }
+            })
+        }
+    }),  
     body('contrasenia')
-        .notEmpty().withMessage('Debes completar la contraseña').bail()
-        .isLength({ min: 4 }).withMessage('La contraseña debe contener un mínimo de 4 caracteres')
+        .custom(function (value) {
+            if (value != null && value.isLength < 4) {
+                throw new Error('La contraseña debe contener un mínimo de 4 caracteres')
+            }
+        })
     
 ];
 
@@ -69,8 +82,9 @@ router.post('/login', validationsLogin, usersController.loginUsuario); // proces
 router.post('/logout', usersController.logout);	
 
 router.get('/profile/edit', usersController.profileEdit);
-router.post('/profile/edit', validationsProfileEdit, usersController.profileEditStore);
+router.post('/profile/edit', usersController.profileEditStore);
 
 router.get('/profile/:id?', usersController.profile);
 ;
 module.exports = router;
+

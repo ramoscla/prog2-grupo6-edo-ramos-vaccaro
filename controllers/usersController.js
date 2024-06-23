@@ -116,25 +116,37 @@ const usersController = {
         }
     },
     profileEditStore: function (req, res) {
-        
+
         let form = req.body;
         let errors = validationResult(req);
         let usuarioId = req.session.user.id; 
 
         if (errors.isEmpty()){
 
-            let contraEncriptada = bcrypt.hashSync(form.contrasenia, 10);
-            form.contrasenia = contraEncriptada;
+            let actualizar = {};      
 
-            db.Usuario.update(form, { where: { id: usuarioId }})
+            if (form.contrasenia && form.contrasenia !== req.session.user.contrasenia) {
+                req.session.user.contrasenia = form.contrasenia;
+                actualizar.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
+            }
+             
+            if (form.email && form.email !== req.session.user.email) {
+                req.session.user.email = form.email;
+                actualizar.email = form.email;
+            }
+    
+            actualizar.usuario = form.usuario;
+            actualizar.fechaNacimiento = form.Nacimiento;
+            actualizar.DNI = form.DNI;
+            actualizar.foto = form.foto;
+
+            db.Usuario.update(actualizar, { where: { id: usuarioId }})
                 .then(function (resultados) {
 
-                    req.session.user.usuario = form.usuario;
-                    req.session.user.email = form.email;
-                    req.session.user.contrasenia = form.contrasenia;
-                    req.session.user.fechaNacimiento = form.Nacimiento;
-                    req.session.user.DNI = form.DNI;
-                    req.session.user.foto= form.foto;
+                    req.session.user.usuario = actualizar.usuario;
+                    req.session.user.fechaNacimiento = actualizar.fechaNacimiento;
+                    req.session.user.DNI = actualizar.DNI;
+                    req.session.user.foto= actualizar.foto;
         
                     return res.redirect('/users/profile/' + usuarioId)
                 })
