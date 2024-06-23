@@ -1,7 +1,7 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs'); 
-const { Association } = require('sequelize');
+const { association } = require('sequelize');
 
 const usersController = {
 
@@ -53,10 +53,10 @@ const usersController = {
                  let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
                  
                  if (check) {
-                    req.session.user = usuarioEncontrado
+                    req.session.user = usuarioEncontrado;
 
                     if(form.recordarme != undefined){
-                        res.cookie('usuario_id', usuarioEncontrado.id, {maxAge: 1000*60*123123123})
+                        res.cookie('usuarioId', usuarioEncontrado.id, {maxAge: 1000*60*123123123})
                     }
                     //Y si el usuario quiere, agregar la cookie para que lo recuerde.
                     
@@ -72,8 +72,8 @@ const usersController = {
     },
 
     profile: function(req, res) {
-        let idUsuario  = req.params.id;
-        db.Usuario.findByPk(idUsuario)
+        let UsuarioId  = req.params.id;
+        db.Usuario.findByPk(UsuarioId)
         
         
         .then(function(resultados){
@@ -99,7 +99,7 @@ const usersController = {
     },
     logout: function(req, res) {
         req.session.destroy();
-        res.clearCookie('usuario_id');
+        res.clearCookie('usuarioId');
         res.redirect('/');
     } 
 };

@@ -18,22 +18,22 @@ CREATE TABLE usuarios(
 CREATE TABLE productos(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
     nombre VARCHAR(100) NOT NULL,
-    foto VARCHAR(50) NOT NULL,
+    foto VARCHAR(1000) NOT NULL,
     descripcion TEXT NOT NULL,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
     updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
-    usuario_id INT UNSIGNED,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+    usuarioId INT UNSIGNED,
+    FOREIGN KEY (usuarioId) REFERENCES usuarios(id)
 );
 
 CREATE TABLE comentarios(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
-    usuario_id INT UNSIGNED,
-    producto_id INT UNSIGNED,
+    usuarioId INT UNSIGNED,
+    productoId INT UNSIGNED,
     comentario TEXT NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (producto_id) REFERENCES productos(id)
+    FOREIGN KEY (usuarioId) REFERENCES usuarios(id),
+    FOREIGN KEY (productoId) REFERENCES productos(id)
 );
 
 INSERT INTO usuarios (usuario, email, contrasenia, fechaNacimiento, DNI, foto) 
@@ -44,7 +44,7 @@ VALUES
     ("Maria", "maria@email.com", "contraseñaMaria", "2010-03-05", 12748192, "maria.jpg"),
     ("Juan", "juan@email.com", "contraseñaJuan", "2001-09-10", 18491850, "juan.jpg");
 
-INSERT INTO productos (nombre, foto, descripcion, usuario_id) 
+INSERT INTO productos (nombre, foto, descripcion, usuarioId) 
 VALUES
     ("Pistacho con cáscara salado y tostado", "pistacho-con-cascara.png", "Ideal como snack. Viene con cáscara y cuenta con una textura crocante y sabor salado. No recomendado para hipertensos", 1),
     ("Nuez pelada Mariposa Extra Light", "nuez-mariposa.png", "Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.", 1),
@@ -57,7 +57,7 @@ VALUES
     ("Nuez Entera Extra Light", "nuez-entera.jpg", "Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.", 5),
     ("Almendras Tostadas", "almendras-tostadas.png", "Almendras tostadas con un toque de sal. Perfectas para un snack saludable.", 5);
 
-INSERT INTO comentarios (usuario_id, producto_id, comentario)
+INSERT INTO comentarios (usuarioId, productoId, comentario)
 VALUES 
     (1, 1, "Muy ricos"),
     (5, 1, "Bastante saladitos."),
