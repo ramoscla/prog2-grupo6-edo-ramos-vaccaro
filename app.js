@@ -39,10 +39,10 @@ app.use(function(req, res, next) {
 );
 
 app.use(function(req, res, next) {
-  if (req.cookies.usuario_id != undefined && req.session.user == undefined) {
-    let idUsuario = req.cookies.usuario_id; 
+  if (req.cookies.usuarioId != undefined && req.session.user == undefined) {
+    let usuarioId = req.cookies.usuarioId; 
 
-    db.Usuario.findByPk(idUsuario)
+    db.Usuario.findByPk(usuarioId)
     .then((result) => {
       req.session.user = result;
       res.locals.user = result;

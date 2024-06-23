@@ -25,7 +25,7 @@ module.exports = function (sequelize, dataTypes) {
     deletedAt: {
       type: dataTypes.DATE,
     },
-    usuario_id: {
+    usuarioId: {
       type: dataTypes.INTEGER,
     },
   };
@@ -41,12 +41,12 @@ module.exports = function (sequelize, dataTypes) {
   Producto.associate = function (models) {
     Producto.belongsTo(models.Usuario, {
       as: "usuario",
-      foreignKey: "usuario_id",
+      foreignKey: "usuarioId",
     });
 
     Producto.hasMany(models.Comentario, {
       as: "comentarios",
-      foreignKey: "producto_id",
+      foreignKey: "productoId",
     });
   };  
 
