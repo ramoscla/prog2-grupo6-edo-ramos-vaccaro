@@ -62,9 +62,9 @@ const usersController = {
                     
                     return res.redirect('/');
     
-                };
+              
                
-            }});
+            }}});
         } else {
             // Si hay errores de validación, renderizamos el formulario de login con los errores
             res.render("login", { errors: errors.mapped() });
