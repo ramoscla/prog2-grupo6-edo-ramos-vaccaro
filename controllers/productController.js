@@ -1,5 +1,5 @@
-const db = require('../database/models');
-const { validationResult } = require('express-validator'); 
+const db = require("../database/models");
+const { validationResult } = require("express-validator");
 
 const productController = {
     product: function (req, res) {
@@ -145,7 +145,4 @@ const productController = {
     }
 }
 }
-
 module.exports = productController;
-
-// TEST COMIT X CAMBIO DE COMPUTADORA
