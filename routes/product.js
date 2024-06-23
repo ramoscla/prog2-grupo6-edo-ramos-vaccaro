@@ -16,7 +16,7 @@ let validationsProductAdd = [
 
 router.get('/add', productController.productAdd);
 router.post('/add', validationsProductAdd, productController.productStore);
-
+router.get('/delete/:id', productController.productDelete);
 router.get('/:id?',productController.product);
 
 module.exports = router; 

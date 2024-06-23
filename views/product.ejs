@@ -20,6 +20,9 @@
 			<h2 class="products-title"><%= productos.nombre %></h2> 
 			<p class="product-detail-description"> <a href="/users/profile/<%= productos.usuario.id %>"> Publicado por: <%= productos.usuario.usuario %></a></p>
 			<p class="product-detail-description"> <a href="/product/add">Editar</a></p>
+			<% if (locals.user != undefined && locals.user.id == productos.usuario.id) { %>
+				<p class="product-detail-description"> <a href="/product/delete/<%= productos.id %>">Eliminar</a></p>
+			<% } %>
 		</div>
 
 		<div class="product-detail">

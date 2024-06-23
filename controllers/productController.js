@@ -4,13 +4,11 @@ const { validationResult } = require('express-validator');
 const productController = {
     product: function (req, res) {
         let objeto = req.params.id;
-        console.log(objeto);
         db.Producto.findByPk (objeto,
             {include : [{association: 'usuario'}]}
         )
         .then( (resultados) => {
             res.render('product', { productos: resultados  });
-            console.log(resultados);
         })
     },
     productAdd: function (req, res) {
@@ -37,8 +35,37 @@ const productController = {
         }  else {
             return res.render('product', { errors: errors.mapped(), old: req.body});        
         }     
-    }
+    },
+    productDelete: function (req, res) {
+    let objeto = req.params.id;
+    db.Producto.findByPk(objeto)
+    .then((resultados) => {
+        if (req.session.user != undefined && req.session.user.id == resultados.usuarioId) {
+            console.log(req.session.user.id)
+            db.Comentario.destroy({
+                where: {
+                    productoId: objeto 
+                }
+            }).then(() => {
+                
+                db.Producto.destroy({
+                    where: {
+                        id: objeto
+                    }
+                }).then((resultados) => {
+                    return res.redirect('/');
+                });
+            });
+
+        } 
+        else {
+            return res.redirect('/users/login');
+        }
+    })
 }
+};
+
+
 
 module.exports = productController;
 
