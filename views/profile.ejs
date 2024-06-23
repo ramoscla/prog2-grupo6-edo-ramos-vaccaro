@@ -49,6 +49,23 @@
 				<h2 class="products-title">Mis Productos</h2>
 			</div>
 			<!-- Show mis productos -->
+			<% for (let i = 0; i < usuario.productos.length; i++) { %>
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/product/<%= usuario.productos[i].id %>">
+							<figure class="product-box_image">
+								<img class="fotoIndex" src= "<%= usuario.productos[i].foto %>">
+							</figure>
+							<article class="product-box_data">
+								<h2><%= usuario.productos[i].nombre %></h2>
+								<p><%= usuario.productos[i].descripcion %></p>
+								<p>Comentarios: <%= usuario.productos[i].comentarios %></p>
+							</article>
+						</a>
+					</section>
+				</div>
+			<% } %>
+
 			
 		</div>
 	</div>
