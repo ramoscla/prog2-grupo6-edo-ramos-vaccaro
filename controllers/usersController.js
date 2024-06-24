@@ -1,11 +1,15 @@
-const db = require('../database/models');
-const { validationResult } = require('express-validator');
-const bcrypt = require('bcryptjs'); 
+const db = require("../database/models");
+const { validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs"); 
 
 const usersController = {
 
     register: function (req, res) {
-        return res.render('register');
+        if (req.session.user != undefined) {
+            return res.redirect("/");
+        } else {
+            return res.render("register");
+        }
     },
     storeRegister: function (req, res) {
         let errors = validationResult(req);
@@ -18,25 +22,25 @@ const usersController = {
            
             db.Usuario.create(form)
                 .then(function (resultados) {
-                    return res.redirect('/users/login')
+                    return res.redirect("/users/login")
                 })
                 .catch(function(error){
                     console.log(error);
                 })
-
+            
         } else {
-            return res.render('register', { errors: errors.mapped(), old: req.body });        
+            return res.render("register", { errors: errors.mapped(), old: req.body });        
         }
     },
     login: function (req, res) {
         
         if (req.session.user != undefined){
-            return res.redirect('/')
+            return res.redirect("/")
         } else {
-            return res.render('login');
+            return res.render("login");
         }
     },
-    loginUsuario: function(req, res) {
+    loginUsuario: function( req, res) {
         let form = req.body;
         let errors = validationResult(req);
         
@@ -48,25 +52,20 @@ const usersController = {
         
             .then(function(usuarioEncontrado) {
                 if (usuarioEncontrado != null){
-                
-                        let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
+                let check = bcrypt.compareSync(form.contrasenia, usuarioEncontrado.contrasenia);
                         
                  // Ponemos en session los datos del usuario encontrado
                  if (check) {
+
                     req.session.user = usuarioEncontrado;
 
-                    if(form.recordarme != undefined){
-                        res.cookie('usuarioId', usuarioEncontrado.id, {maxAge: 1000*60*123123123})
+                    //Y si el usuario quiere, agregar la cookie para que lo recuerde.
+                    if (form.recordarme != undefined) {
+                        res.cookie("usuarioId", usuarioEncontrado.id, {maxAge: 1000*60*123123123})
                     }
                     req.session.user = usuarioEncontrado;
-
-                
-                    //Y si el usuario quiere, agregar la cookie para que lo recuerde.
                     
-                    return res.redirect('/');
-    
-              
-               
+                    return res.redirect("/");
             }}} 
         );
         } else {
@@ -74,30 +73,20 @@ const usersController = {
             res.render("login", { errors: errors.mapped() });
         }
     },
-
     profile: function(req, res) {
         let usuarioId  = req.params.id;
 
         db.Usuario.findByPk(usuarioId, { include: [
-            {association: 'productos'},
-            {association : 'comentarios'} 
+            {association: "productos"},
+            {association : "comentarios"} 
         ],
-        order :[['createdAt', 'DESC']]})
-        
+        order :[["createdAt", "DESC"]]})
         .then(function(resultados){
-
-            return res.render('profile', {
-                usuario: resultados
-                
-               })
+            return res.render("profile", {usuario: resultados })
         })
         .catch (function(error){
             console.log(error);
         })
-
-       // .then((resultados) => {
-        //res.render('profile', { usuario: db.usuario, productos: db.listaProductos });
-        //console.log(resultados) })
     },
     profileEdit: function(req, res) {
         if (req.session.user != undefined) {
@@ -106,14 +95,14 @@ const usersController = {
 
             db.Usuario.findByPk(usuarioId)
             .then(function (resultados) {
-                res.render('profile-edit', {usuario: resultados})
+                res.render("profile-edit", {usuario: resultados})
             })
             .catch (function(error){
                 console.log(error);
             })
 
         } else {
-            res.redirect('/users/login')
+            res.redirect("/users/login")
         }
     },
     profileEditStore: function (req, res) {
@@ -127,13 +116,13 @@ const usersController = {
             let actualizar = {};      
 
             if (form.contrasenia && form.contrasenia !== req.session.user.contrasenia) {
-                req.session.user.contrasenia = form.contrasenia;
                 actualizar.contrasenia = bcrypt.hashSync(form.contrasenia, 10);
+                req.session.user.contrasenia = actualizar.contrasenia;
             }
-             
+
             if (form.email && form.email !== req.session.user.email) {
-                req.session.user.email = form.email;
                 actualizar.email = form.email;
+                req.session.user.email = actualizar.email;
             }
     
             actualizar.usuario = form.usuario;
@@ -149,20 +138,20 @@ const usersController = {
                     req.session.user.DNI = actualizar.DNI;
                     req.session.user.foto= actualizar.foto;
         
-                    return res.redirect('/users/profile/' + usuarioId)
+                    return res.redirect("/users/profile/" + usuarioId)
                 })
                 .catch(function(error){
                     console.log(error);
                 })
 
         } else {
-            return res.render('profile-edit', { errors: errors.mapped(), old: req.body, usuario: form});        
+            return res.render("profile-edit", { errors: errors.mapped(), old: req.body, usuario: form});        
         }
     },
     logout: function(req, res) {
         req.session.destroy();
-        res.clearCookie('usuarioId');
-        res.redirect('/');
+        res.clearCookie("usuarioId");
+        res.redirect("/");
     } 
 };
 

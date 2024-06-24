@@ -18,21 +18,17 @@ module.exports = function (sequelize, dataTypes) {
         comentario: {
             allowNull : false,
             type : dataTypes.STRING
-
         }, 
-         createdAt: {
+        createdAt: {
             type: dataTypes.DATE,
-          },
-          updatedAt: {
+        },
+        updatedAt: {
             type: dataTypes.DATE,
-          },
-          deletedAt: {
+        },
+        deletedAt: {
             type: dataTypes.DATE,
-          }
-         
+        }    
     };
-  
-    
 
     let config = {
         tableName: "comentarios",
@@ -51,6 +47,7 @@ Comentario.associate = function(models){
         as:"producto",
         foreignKey: "productoId"
     })}; 
+
 return Comentario;
 
 }
