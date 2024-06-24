@@ -8,7 +8,10 @@ const productController = {
         db.Producto.findByPk (objeto,
             {include : [
               {association: 'usuario'},
-              {association: 'comentarios', include: [ {association :'usuario'}]}
+              {association: 'comentarios', include: [ {association :'usuario'} ],
+              order: [[ 'createdAt', 'DESC']]
+            },
+             
 
             ]}
         )
@@ -157,9 +160,7 @@ productComentarioStore: function(req,res){
       comentario: form.comentario
     }
   
-    db.Comentario.create(comentarioNuevo,{ order: [
-        ['createdAt', 'DESC'],
-        ]})
+    db.Comentario.create(comentarioNuevo)
       .then(function() {
           return res.redirect('/product/' + form.productoId);
       })
