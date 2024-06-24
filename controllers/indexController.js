@@ -4,15 +4,25 @@ const db = require('../database/models');
 const indexController = {
     index: function (req, res) {
         db.Producto.findAll({
+            include : [
+                {association: 'usuario'},
+                {association: 'comentarios'}
+            ],
             order: [
-                    ['createdAt', 'DESC']
+                     ['createdAt', 'DESC'],
             ]
             
         })
+    
 
         .then((resultados) => {
             res.render('index', { productos: resultados });
+            
         })
+        .catch((error) => {
+            console.log(error);
+            res.send('Ocurrió un error');
+        });
     },
     searchResults: function (req, res) {
         let objeto = req.query.search;
