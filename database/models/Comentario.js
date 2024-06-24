@@ -38,7 +38,7 @@ Comentario.associate = function(models){
     }),
     Comentario.belongsTo(models.Producto, {
         as:"producto",
-        foreingKey: "productoId"
+        foreignKey: "productoId"
     })}; 
 return Comentario;
 
