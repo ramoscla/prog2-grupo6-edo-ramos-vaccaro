@@ -55,7 +55,7 @@
 					<form class="formularios comentarios" action="/product/<%= productos.id %>/" method="post">
 						<% if (locals.user != undefined) { %>
 							<input type="hidden" name="productoId" value="<%= productos.id %>">
-							<input type="text" name ="comentario" placeholder="Agregar comentario">
+							<input type="text" name ="comentario" placeholder="Agregar comentario" value="" required>>
 							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 							<% if (locals.errors && errors.comentario){ %>
 								<p class="feedback"><%= errors.comentario.msg %></p>

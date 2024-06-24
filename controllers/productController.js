@@ -137,7 +137,9 @@ productComentarioStore: function(req,res){
       comentario: form.comentario
     }
   
-    db.Comentario.create(comentarioNuevo)
+    db.Comentario.create(comentarioNuevo,{ order: [
+        ['createdAt', 'DESC'],
+        ]})
       .then(function() {
           return res.redirect('/product/' + form.productoId);
       })
@@ -147,8 +149,21 @@ productComentarioStore: function(req,res){
       });
     
     } else{
+        let objeto = req.params.id;
+        console.log(objeto);
+        db.Producto.findByPk (objeto,
+            {include : [
+              {association: 'usuario'},
+              {association: 'comentarios', include: [ {association :'usuario'}]}
+
+            ]}
+        )
+        .then( (resultados) => {
+            res.render('product', { errors: errors.mapped(), old: req.body}, { productos: resultados  } );
+            console.log(resultados);
+        })
+       
         
-        return res.render('/product/' + {errors: errors.mapped() });
 
     }
            
