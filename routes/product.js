@@ -27,7 +27,7 @@ let validationsProductEdit = [
 let validationsProductComentario = [
     body('comentario')
         .notEmpty().withMessage('Debes completar el campo de comentario.').bail()
-        .isLength({ min: 3 }).withMessage('El comentario debe tener al menos 3 caracteres.')
+        .isLength({ min: 3 }).withMessage('El comentario debe tener al menos 3 caracteres.').bail()
 ];
 
 router.get('/add', productController.productAdd);
@@ -35,7 +35,7 @@ router.post('/add', validationsProductAdd, productController.productStore);
 router.get('/edit/:id', productController.productEdit);
 router.post('/edit', validationsProductEdit, productController.productEditStore);
 router.get('/delete/:id', productController.productDelete);
-router.post('/:id', validationsProductComentario, productController.productComentarioStore)
+router.post('/:id', validationsProductComentario, productController.productComentarioStore, productController.product)
 router.get('/:id?',productController.product);
 
 module.exports = router; 

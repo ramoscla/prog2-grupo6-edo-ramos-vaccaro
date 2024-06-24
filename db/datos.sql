@@ -32,6 +32,8 @@ CREATE TABLE comentarios(
     usuarioId INT UNSIGNED,
     productoId INT UNSIGNED,
     comentario TEXT NOT NULL,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    deletedAt DATETIME NULL ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (usuarioId) REFERENCES usuarios(id),
     FOREIGN KEY (productoId) REFERENCES productos(id)
 );
