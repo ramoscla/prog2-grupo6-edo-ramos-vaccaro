@@ -339,9 +339,14 @@ i.fas.fa-search {
 }
 .product-detail-info img {
   border: 3px solid var(--light-green);
-  
 }
-.pro
+.product-detail-info input, textarea {
+  min-height: 140px;
+  resize: vertical;
+  padding: 15px;
+  border: solid 5px var(--light-green);
+  border-radius: 3%;
+}
 
 .product-detail-title {
   font-weight: 400;
@@ -353,12 +358,6 @@ i.fas.fa-search {
   font-size: 1.8em;
   line-height: 1.5;
 }
-.product-detail-description-comentario {
-color:rgb(133, 112, 112);
-font-size: 1.9em;
-font-weight: 400;
-}
-
 
 .product-detail-price {
   font-size: 5.5em;
