@@ -46,16 +46,16 @@ VALUES
 
 INSERT INTO productos (nombre, foto, descripcion, usuarioId) 
 VALUES
-    ("Pistacho con cáscara salado y tostado", "pistacho-con-cascara.png", "Ideal como snack. Viene con cáscara y cuenta con una textura crocante y sabor salado. No recomendado para hipertensos", 1),
-    ("Nuez pelada Mariposa Extra Light", "nuez-mariposa.png", "Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.", 1),
-    ("Castañas de cajú tostadas con sal", "castañas-caju-tostadas.png", "Gustosas castañas de cajú tostadas con sal de textura crocante.", 2),
-    ("Maní salado y tostado", "mani-tostado-salado.png", "Energético y nutritivo.", 2),
-    ("Nueces de macadamia", "nueces-macadamia.png", "Nueces de macadamia, conocidas por su sabor suave y textura cremosa. Excelentes para postres", 3),
-    ("Pistachos sin cáscara", "pistachos-sin-cascara.png", "Pistachos sin cáscara, listos para comer. Deliciosos y prácticos.", 3),
-    ("Nueces de Brasil", "nueces-brasil.png", "Nueces de Brasil, conocidas por su sabor suave y textura cremosa. Excelentes para postres.", 4),
-    ("Avellanas Tostadas", "avellana-tostada.png", "Avellanas tostadas con un toque de sal. Perfectas para un snack saludable.", 4),
-    ("Nuez Entera Extra Light", "nuez-entera.jpg", "Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.", 5),
-    ("Almendras Tostadas", "almendras-tostadas.png", "Almendras tostadas con un toque de sal. Perfectas para un snack saludable.", 5);
+    ("Pistacho con cáscara salado y tostado", "https://cdn.newgarden.com.ar/media/catalog/product/cache/dda7253a1a2f6711745de410175d10f8/p/i/pistacho-con-cascara-salado-y-tostado.jpg", "Ideal como snack. Viene con cáscara y cuenta con una textura crocante y sabor salado. No recomendado para hipertensos", 1),
+    ("Nuez pelada Mariposa Extra Light", "https://acdn.mitiendanube.com/stores/750/800/products/nuez-blanca-mariposa1-c801d8c98dcee3eea315987244924483-640-0.jpg", "Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.", 1),
+    ("Castañas de cajú tostadas con sal", "https://cdn.newgarden.com.ar/media/catalog/product/cache/f1e87191ad4fbadc602f34ed83daeecc/c/a/castana-caju-tostada-con-sal.jpg", "Gustosas castañas de cajú tostadas con sal de textura crocante.", 2),
+    ("Maní salado y tostado", "https://acdn.mitiendanube.com/stores/002/324/020/products/mani-repelado-a10c5e2e1b24fe369916982384859550-640-0.png", "Energético y nutritivo.", 2),
+    ("Nueces de macadamia", "https://png.pngtree.com/png-clipart/20240220/original/pngtree-macadamia-nut-on-white-background-shell-photo-png-image_14361899.png", "Nueces de macadamia, conocidas por su sabor suave y textura cremosa. Excelentes para postres", 3),
+    ("Pistachos sin cáscara", "https://estilorganico.com/562-large_default/pistachos-sin-cascara-x-200-grs.jpg", "Pistachos sin cáscara, listos para comer. Deliciosos y prácticos.", 3),
+    ("Nueces de Brasil", "https://img.freepik.com/fotos-premium/nueces-brasil-sobre-fondo-blanco_521733-7988.jpg", "Nueces de Brasil, conocidas por su sabor suave y textura cremosa. Excelentes para postres.", 4),
+    ("Avellanas Tostadas", "https://st.depositphotos.com/16122460/51375/i/450/depositphotos_513758282-stock-photo-heap-tasty-hazelnuts-white-background.jpg", "Avellanas tostadas con un toque de sal. Perfectas para un snack saludable.", 4),
+    ("Nuez Entera Extra Light", "https://acdn.mitiendanube.com/stores/750/800/products/nuez-blanca-mariposa1-c801d8c98dcee3eea315987244924483-640-0.jpg", "Variedad de nuez entera, destacada para aprovechar sus aceites naturales cardioprotectores. De sabor y textura suave.", 5),
+    ("Almendras Tostadas", "https://cdn.newgarden.com.ar/media/catalog/product/cache/dda7253a1a2f6711745de410175d10f8/a/l/almendra-tostada-sin-sal_1.jpg", "Almendras tostadas con un toque de sal. Perfectas para un snack saludable.", 5);
 
 INSERT INTO comentarios (usuarioId, productoId, comentario)
 VALUES 
