@@ -115,56 +115,43 @@ const productController = {
       });
     }
   },
-    productComentario: function(req,res){
-        let form = req.body;
-        let errors = validationResult(req)
+    
 
-        if (errors.isEmpty()) {
-
-            if(req.session.user == undefined ){
-             return res.redirect('/users/login ')
-            } else {
-                     
-            
-            console.log(comentario)
-        }
-  
+productComentario: function(req,res){
+    if (req.session.user != undefined) {
+        return res.render('/product/', { usuario: req.session.user });
+    } else {
+        return res.redirect('/users/login');
     }
 
 },
 productComentarioStore: function(req,res){
+    let form = req.body;
+    let usuarioId = req.session.user.id; 
+    let errors = validationResult(req);
 
-        let form = req.body;
-        let errors = validationResult(req);
+  if (errors.isEmpty()) {
+    let comentarioNuevo = {
+      usuarioId: usuarioId,
+      productoId: form.productoId,
+      comentario: form.comentario
+    }
+  
+    db.Comentario.create(comentarioNuevo)
+      .then(function() {
+          return res.redirect('/product/' + form.productoId);
+      })
+      .catch(function(error) {
+          console.log(error);
+          return res.redirect('/product/' + form.productoId);
+      });
     
-            if (errors.isEmpty()) {
+    } else{
+        
+        return res.render('/product/' + {errors: errors.mapped() });
 
-                    let comentario = {
-                        id_usuario: req.session.user.id,
-                        id_producto: req.params.id,
-                        texto: form.comentario
-                    }
-
-                    db.Comentario.create(comentario)
-                    .then((results) => {
-                        return res.redirect("/product/id/" + req.params.id);
-
-                    }).catch((err) => {
-                        console.log(err);
-                        return res.redirect("/product/id/" + req.params.id);
-                    })
-   
-                .then(function (resultados) {
-                    return res.redirect('/product/' + resultados.id)
-                })
-                .catch(function(errors){
-                    console.log(errors);
-                })
-                
-    
-            }  else {
-                return res.render('product', { errors: errors.mapped(), old: req.body});        
-            } 
+    }
+           
         
     }
 }

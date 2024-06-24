@@ -35,8 +35,7 @@ router.post('/add', validationsProductAdd, productController.productStore);
 router.get('/edit/:id', productController.productEdit);
 router.post('/edit', validationsProductEdit, productController.productEditStore);
 router.get('/delete/:id', productController.productDelete);
-router.get('/product/:id',productController.productComentario);
-router.post('/product/:id', validationsProductComentario, productController.productComentarioStore)
+router.post('/:id', validationsProductComentario, productController.productComentarioStore)
 router.get('/:id?',productController.product);
 
 module.exports = router; 
