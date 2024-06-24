@@ -43,7 +43,17 @@ const productController = {
             })
 
         }  else {
-            return res.render('product', { errors: errors.mapped(), old: req.body});        
+
+            db.Producto.findByPk (form.productoId,
+            {include : [
+              {association: 'usuario'},
+              {association: 'comentarios', include: [ {association :'usuario'}]}
+    
+            ]})
+    
+          .then(function (resultados) {
+
+            return res.render('product-add', { errors: errors.mapped(), old: req.body, productos: resultados, usuario: req.session.user})})    
         }     
     },
     productDelete: function (req, res) {
