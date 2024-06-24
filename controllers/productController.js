@@ -12,7 +12,7 @@ const productController = {
 
             ]}
         )
-        .then( (resultados) => {
+        .then(function (resultados) {
             res.render('product', { productos: resultados  });
             console.log(resultados);
         })
@@ -74,7 +74,8 @@ const productController = {
       if (req.session.user != undefined) {
         db.Producto.findByPk(objeto, {
           include: [{ association: "usuario" }],
-        }).then((resultados) => {
+        })
+        .then(function(resultados) {
           if (
             req.session.user != undefined &&
             req.session.user.id == resultados.usuarioId
@@ -92,29 +93,39 @@ const productController = {
     productEditStore: function (req, res) {
       let form = req.body;
       let errors = validationResult(req);
-  
-  
-  if (errors.isEmpty()) {
-      db.Producto.update(
-        {
-          nombre: form.nombre,
-          foto: form.foto,
-          descripcion: form.descripcion,
-        },
-        {
-          where: {
-            id: form.id,
-          },
-        }
-      )
+      db.Producto.findByPk (form.id,
+        {include : [
+          {association: 'usuario'},
+          {association: 'comentarios', include: [ {association :'usuario'}]}
+
+        ]})
+
       .then(function (resultados) {
+    
+      if (errors.isEmpty()) {
+        db.Producto.update(
+          {
+            nombre: form.nombre,
+            foto: form.foto,
+            descripcion: form.descripcion,
+          },
+          {
+            where: {
+              id: form.id,
+            },
+          }
+        )
+        .then(function (resultados) {
         return res.redirect("/");    
-      })
-      .catch(function (errors) {
-        console.log(errors);
-      });
-    }
-  },
+        })
+        .catch(function (errors) {
+          console.log(errors);
+        });
+      }else {
+      console.log(errors.mapped())
+      return res.render('product-edit', { errors: errors.mapped(), old: req.body, productos: resultados}); 
+      }})  
+    },
     
 
 productComentario: function(req,res){

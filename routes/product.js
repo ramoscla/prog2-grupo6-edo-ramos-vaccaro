@@ -18,7 +18,7 @@ let validationsProductEdit = [
         .notEmpty().withMessage('Debes completar este campo'),
     body('foto')
         .notEmpty().withMessage('Debes completar este campo')
-        .isURL().withMessage('Debes completar con una URL valida').bail(),
+        .isURL().withMessage('Debes completar con una URL valida'),
     body('descripcion')
         .notEmpty().withMessage('Debes completar este campo').bail()
         

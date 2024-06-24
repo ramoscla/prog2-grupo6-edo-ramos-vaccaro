@@ -23,37 +23,45 @@
 											<label for="nombre">
 												<%= productos.nombre %>
 											</label><br>
-											<input type="text" id="nombre" name="nombre" value="<%= productos.nombre %>" required><br>
+											<input type="text" id="nombre" name="nombre" value="<%= productos.nombre %>"
+												required><br>
 										</h2>
 										<input type="hidden" name="id" value="<%= productos.id %>">
-											
+
 										<p class="product-detail-description"> <a
-												href="/users/profile/<%= productos.usuario.id %>"> Publicado por: <%=productos.usuario.usuario %></a></p>
+												href="/users/profile/<%= productos.usuario.id %>"> Publicado por:
+												<%=productos.usuario.usuario %></a></p>
 								</div>
 
 								<div class="product-detail">
 									<div class="row">
 
 										<article class="col-12 col-lg-8 product-detail-info">
-											<label for="nombre"><img src="<%= productos.foto %>" alt="foto del producto"
+											<label for="foto"><img src="<%= productos.foto %>" alt="foto del producto"
 													class="foto-producto"></label><br>
-											<input type="text" id="foto" name="foto" value="<%= productos.foto %>" required><br></h2>
-
-											<label style="font-size: 20px;" for="descripcion">
-												<%= productos.descripcion %>
-											</label><br>
-											<textarea id="descripcion" name="descripcion" value="<%= productos.descripcion %>" required></textarea><br>
-											<% if (locals.errors && errors.descripcion) { %>
+											<input type="text" id="foto" name="foto" value="<%= productos.foto %>"
+												required><br></h2>
+											<% if (locals.errors && errors.foto) { %>
 												<p class="feedback">
-													<%= errors.descripcion.msg %>
+													<%= errors.foto.msg %>
 												</p>
-												<% } %>
+											<% } %>
+													<label style="font-size: 20px;" for="descripcion">
+														<%= productos.descripcion %>
+													</label><br>
+													<textarea id="descripcion" name="descripcion"
+														value="<%= productos.descripcion %>"></textarea><br>
+													<% if (locals.errors && errors.descripcion) { %>
+														<p class="feedback">
+															<%= errors.descripcion.msg %>
+														</p>
+														<% } %>
 
 
 
 										</article>
 
-										<input class = "editar" type="submit" value="Guardar producto">
+										<input class="editar" type="submit" value="Guardar producto">
 										</form>
 
 									</div>
