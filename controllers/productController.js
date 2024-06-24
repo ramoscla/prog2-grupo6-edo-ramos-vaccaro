@@ -141,6 +141,15 @@ productComentarioStore: function(req,res){
     let usuarioId = req.session.user.id; 
     let errors = validationResult(req);
 
+    db.Producto.findByPk (form.productoId,
+        {include : [
+          {association: 'usuario'},
+          {association: 'comentarios', include: [ {association :'usuario'}]}
+
+        ]})
+
+      .then(function (resultados){
+
   if (errors.isEmpty()) {
     let comentarioNuevo = {
       usuarioId: usuarioId,
@@ -160,25 +169,15 @@ productComentarioStore: function(req,res){
       });
     
     } else{
-        let objeto = req.params.id;
-        console.log(objeto);
-        db.Producto.findByPk (objeto,
-            {include : [
-              {association: 'usuario'},
-              {association: 'comentarios', include: [ {association :'usuario'}]}
-
-            ]}
-        )
-        .then( (resultados) => {
-            res.render('product', { errors: errors.mapped(), old: req.body}, { productos: resultados  } );
-            console.log(resultados);
-        })
+        console.log(errors.mapped())
+      return res.render('product', { errors: errors.mapped(), old: req.body, productos: resultados}); 
+       
        
         
 
     }
            
-        
+    })
     }
 }
 module.exports = productController;

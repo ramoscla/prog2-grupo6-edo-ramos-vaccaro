@@ -427,6 +427,11 @@ i.fas.fa-search {
 .comments {
   padding: 30px 15px 15px 0;
 }
+.comentarioError{
+  font-size: 1.6em;
+  color: #997b67;
+  font-weight: 500;
+}
 
 .comments article {
   margin-bottom: 7.5px;

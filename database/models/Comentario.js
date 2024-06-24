@@ -23,7 +23,9 @@ module.exports = function (sequelize, dataTypes) {
          createdAt: {
             type: dataTypes.DATE,
           },
-        
+          updatedAt: {
+            type: dataTypes.DATE,
+          },
           deletedAt: {
             type: dataTypes.DATE,
           }

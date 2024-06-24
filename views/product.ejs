@@ -58,11 +58,11 @@
 							<input type="text" name ="comentario" placeholder="Agregar comentario" value="" required>>
 							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 							<% if (locals.errors && errors.comentario){ %>
-								<p class="feedback"><%= errors.comentario.msg %></p>
+								<p class="feedback comentarioError"><%= errors.comentario.msg %></p>
 							<% } %>
 
 						<% } else if (locals.user == undefined) {  %>
-							<p  class="product-detail-description-comentario">Debes iniciar sesión para comentar </p>
+							<p  class="feedback comentarioError">Debes iniciar sesión para comentar </p>
 
 							<% } %>
 							
