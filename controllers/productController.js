@@ -8,17 +8,18 @@ const productController = {
         db.Producto.findByPk (objeto,
             {include : [
               {association: 'usuario'},
-              {association: 'comentarios', include: [ {association :'usuario'} ],
-              order: [[ 'createdAt', 'DESC']]
-            },
+              {association: 'comentarios', include: [ {association :'usuario'} ]}
              
 
-            ]}
+            ],  order: [[{ model: db.Comentario, as: 'comentarios' }, 'createdAt', 'DESC']]
+        }
         )
-        .then(function (resultados) {
-            res.render('product', { productos: resultados  });
-            console.log(resultados);
-        })
+    
+            .then(function (resultados) {
+                res.render('product', { productos: resultados  });
+                console.log(resultados);
+            })
+        
     },
     productAdd: function (req, res) {
         if (req.session.user != undefined) {
