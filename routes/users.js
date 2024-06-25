@@ -68,7 +68,7 @@ let validationsProfileEdit = [
     .notEmpty().withMessage('Debes completar el nombre de usuario'),
     body("email")
     .notEmpty().withMessage("Debes completar el email").bail()
-    .isEmail()
+    .isEmail().bail()
     .custom(function (value, {req}) {
         if (value !== req.session.user.email) {
             return db.Usuario.findOne({
